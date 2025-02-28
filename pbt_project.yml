@@ -49,6 +49,16 @@ sqlMacros:
     - macros/macros.yml
     - gems/DynamicSelect.py
     createdAt: '2024-11-28 05:24:23'
+  .prophecy/metadata/sqlmacros/MultiColumnRename:
+    name: MultiColumnRename
+    macroType: query
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - macros/MultiColumnRename.sql
+    - .prophecy/ide/macros/MultiColumnRename.json
+    - gems/MultiColumnRename.py
+    createdAt: '2025-03-04 11:38:02'
   .prophecy/metadata/sqlmacros/ColumnParser:
     name: ColumnParser
     macroType: query
@@ -71,17 +81,6 @@ sqlMacros:
     - macros/macros.yml
     - gems/BulkColumnExpressions.py
     createdAt: '2024-11-28 05:21:35'
-  .prophecy/metadata/sqlmacros/BulkColumnRename:
-    name: BulkColumnRename
-    macroType: query
-    description: null
-    author: abhisheks+e2etests@prophecy.io
-    files:
-    - macros/BulkColumnRename.sql
-    - .prophecy/ide/macros/BulkColumnRename.json
-    - macros/macros.yml
-    - gems/BulkColumnRename.py
-    createdAt: '2024-11-28 05:22:26'
   .prophecy/metadata/sqlmacros/evaluate_expression:
     name: evaluate_expression
     macroType: expression

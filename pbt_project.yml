@@ -23,7 +23,39 @@ functions:
   airflowFunctions: {}
   businessRules: {}
 subgraphs: {}
-sqlModels: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/bulkColumnTest:
+    name: bulkColumnTest
+    schema: null
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - models/bulkColumnTest.sql
+    - .prophecy/ide/models/bulkColumnTest.json
+    - models/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-03-04 11:38:02'
+  .prophecy/metadata/sqlmodels/bulkColumnWithDoble:
+    name: bulkColumnWithDoble
+    schema: null
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - models/bulkColumnWithDoble.sql
+    - .prophecy/ide/models/bulkColumnWithDoble.json
+    - models/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-03-04 11:38:02'
 sqlSnapshots: {}
 sqlTests: {}
 sqlMacros:
@@ -49,6 +81,14 @@ sqlMacros:
     - macros/macros.yml
     - gems/DynamicSelect.py
     createdAt: '2024-11-28 05:24:23'
+  .prophecy/metadata/sqlmacros/MultiColumnRename:
+    name: MultiColumnRename
+    macroType: query
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - macros/BulkColumnRename.sql
+    createdAt: '2025-03-04 11:38:02'
   .prophecy/metadata/sqlmacros/ColumnParser:
     name: ColumnParser
     macroType: query
@@ -71,17 +111,6 @@ sqlMacros:
     - macros/macros.yml
     - gems/BulkColumnExpressions.py
     createdAt: '2024-11-28 05:21:35'
-  .prophecy/metadata/sqlmacros/BulkColumnRename:
-    name: BulkColumnRename
-    macroType: query
-    description: null
-    author: abhisheks+e2etests@prophecy.io
-    files:
-    - macros/BulkColumnRename.sql
-    - .prophecy/ide/macros/BulkColumnRename.json
-    - macros/macros.yml
-    - gems/BulkColumnRename.py
-    createdAt: '2024-11-28 05:22:26'
   .prophecy/metadata/sqlmacros/evaluate_expression:
     name: evaluate_expression
     macroType: expression
@@ -93,7 +122,32 @@ sqlMacros:
     - macros/macros.yml
     createdAt: '2024-11-28 05:21:11'
 sqlSeeds: {}
-sqlSources: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/PROPHECY_EXP_PROPHECY_EXP_SCHEMA:
+    name: PROPHECY_EXP.PROPHECY_EXP_SCHEMA
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-03-04 11:38:02'
+    tables:
+    - name: CUSTOMERS
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields: []
+      description: Customer lifetime value and order history data, enabling insights
+        into customer engagement and purchasing behavior.
+      author: adak.debashis@prophecy.io
+      createdAt: '2025-03-04 11:38:02'
+    - name: Test_table
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields: []
+      description: Test data capturing integer and float values for analysis purposes.
+      author: adak.debashis@prophecy.io
+      createdAt: '2025-03-04 11:38:02'
 sqlUnreferencedSources: {}
 sqlPipeline:
   name: sqlPipeline

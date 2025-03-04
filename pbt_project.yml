@@ -87,7 +87,9 @@ sqlMacros:
     description: null
     author: adak.debashis@prophecy.io
     files:
-    - macros/BulkColumnRename.sql
+    - macros/MultiColumnRename.sql
+    - .prophecy/ide/macros/MultiColumnRename.json
+    - gems/MultiColumnRename.py
     createdAt: '2025-03-04 11:38:02'
   .prophecy/metadata/sqlmacros/ColumnParser:
     name: ColumnParser

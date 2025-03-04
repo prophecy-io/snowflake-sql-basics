@@ -1,31 +1,27 @@
 from dataclasses import dataclass
 import dataclasses
 
-from collections import defaultdict
 from prophecy.cb.sql.Component import *
 from prophecy.cb.sql.MacroBuilderBase import *
 from prophecy.cb.ui.uispec import *
+from prophecy.cb.ui.uispec import *
+from prophecy.cb.server.base.ComponentBuilderBase import Diagnostic, SeverityLevelEnum
 from prophecy.cb.server.base.ComponentBuilderBase import *
+
 from pyspark.sql import *
 from pyspark.sql.functions import *
+from pyspark.sql.types import StructType, StructField
 
-from prophecy.cb.server.base import WorkflowContext
-from prophecy.cb.server.base.datatypes import SInt, SString
-from prophecy.cb.server.base.ComponentBuilderBase import ComponentCode, Diagnostic, SeverityLevelEnum, \
-    SubstituteDisabled, PostSubstituteDisabled
-from prophecy.cb.ui.uispec import *
 import json
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
 
-
-class BulkColumnRename(MacroSpec):
-    name: str = "BulkColumnRename"
+class MultiColumnRename(MacroSpec):
+    name: str = "MultiColumnRename"
     projectName: str = "SnowflakeSqlBasics"
     category: str = "Transform"
 
 
     @dataclass(frozen=True)
-    class BulkColumnRenameProperties(MacroProperties):
+    class MultiColumnRenameProperties(MacroProperties):
         # properties for the component with default values
         schema: Optional[StructType] = StructType([])
         columnNames: List[str] = field(default_factory=list)
@@ -45,7 +41,7 @@ class BulkColumnRename(MacroSpec):
                         .addOption("Advanced rename", "advancedRename")\
                         .bindProperty("renameMethod")
         
-        dialog = Dialog("BulkColumnRename")\
+        dialog = Dialog("MultiColumnRename")\
             .addElement(
                 ColumnsLayout(gap="1rem", height="100%")
                 .addColumn(Ports(allowInputAddOrDelete=True),"content")
@@ -93,8 +89,8 @@ class BulkColumnRename(MacroSpec):
                             StringExpr("advancedRename")
                         )
                         .then(
-                            StackLayout()
-                            .addElement(
+                            ColumnsLayout(gap=("1rem"), height=("100%"))
+                            .addColumn(
                                 TextBox("Enter Custom Expression")
                                 .bindPlaceholder("""Example: concat(column_name, 'xyz')""")
                                 .bindProperty("customExpression")
@@ -107,7 +103,7 @@ class BulkColumnRename(MacroSpec):
 
     def validate(self, context: SqlContext, component: Component) -> List[Diagnostic]:
         # Validate the component's state
-        diagnostics = super(BulkColumnRename, self).validate(context,component)
+        diagnostics = super(MultiColumnRename, self).validate(context,component)
         props = component.properties
 
         if len(component.properties.columnNames) == 0:            
@@ -139,7 +135,7 @@ class BulkColumnRename(MacroSpec):
         )
         return newState.bindProperties(newProperties)
 
-    def apply(self, props: BulkColumnRenameProperties) -> str:
+    def apply(self, props: MultiColumnRenameProperties) -> str:
         # Get existing column names
         column_names = [field.name for field in props.schema.fields]
 
@@ -162,7 +158,7 @@ class BulkColumnRename(MacroSpec):
 
         # load the component's state given default macro property representation
         parametersMap = self.convertToParameterMap(properties.parameters)
-        return BulkColumnRename.BulkColumnRenameProperties(
+        return MultiColumnRename.MultiColumnRenameProperties(
             relation=parametersMap.get('relation'),
             columnNames=json.loads(parametersMap.get('columnNames').replace("'", '"')),
             renameMethod=parametersMap.get('renameMethod'),

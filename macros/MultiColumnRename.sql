@@ -1,4 +1,4 @@
-{% macro BulkColumnRename(
+{% macro MultiColumnRename(
     relation,
     schema,
     columnNames,

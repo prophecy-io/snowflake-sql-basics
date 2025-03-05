@@ -23,39 +23,7 @@ functions:
   airflowFunctions: {}
   businessRules: {}
 subgraphs: {}
-sqlModels:
-  .prophecy/metadata/sqlmodels/bulkColumnTest:
-    name: bulkColumnTest
-    schema: null
-    description: null
-    author: adak.debashis@prophecy.io
-    files:
-    - models/bulkColumnTest.sql
-    - .prophecy/ide/models/bulkColumnTest.json
-    - models/schema.yml
-    sqlDependencies:
-      models: []
-      datasets: []
-      seeds: []
-      sources: []
-      snapshots: []
-    createdAt: '2025-03-04 11:38:02'
-  .prophecy/metadata/sqlmodels/bulkColumnWithDoble:
-    name: bulkColumnWithDoble
-    schema: null
-    description: null
-    author: adak.debashis@prophecy.io
-    files:
-    - models/bulkColumnWithDoble.sql
-    - .prophecy/ide/models/bulkColumnWithDoble.json
-    - models/schema.yml
-    sqlDependencies:
-      models: []
-      datasets: []
-      seeds: []
-      sources: []
-      snapshots: []
-    createdAt: '2025-03-04 11:38:02'
+sqlModels: {}
 sqlSnapshots: {}
 sqlTests: {}
 sqlMacros:
@@ -124,32 +92,7 @@ sqlMacros:
     - macros/macros.yml
     createdAt: '2024-11-28 05:21:11'
 sqlSeeds: {}
-sqlSources:
-  .prophecy/metadata/sqlsources/PROPHECY_EXP_PROPHECY_EXP_SCHEMA:
-    name: PROPHECY_EXP.PROPHECY_EXP_SCHEMA
-    description: null
-    author: adak.debashis@prophecy.io
-    files:
-    - prophecy-sources/sources.yml
-    createdAt: '2025-03-04 11:38:02'
-    tables:
-    - name: CUSTOMERS
-      schema:
-        entityType: ''
-        providerType: snowflake
-        fields: []
-      description: Customer lifetime value and order history data, enabling insights
-        into customer engagement and purchasing behavior.
-      author: adak.debashis@prophecy.io
-      createdAt: '2025-03-04 11:38:02'
-    - name: Test_table
-      schema:
-        entityType: ''
-        providerType: snowflake
-        fields: []
-      description: Test data capturing integer and float values for analysis purposes.
-      author: adak.debashis@prophecy.io
-      createdAt: '2025-03-04 11:38:02'
+sqlSources: {}
 sqlUnreferencedSources: {}
 sqlPipeline:
   name: sqlPipeline

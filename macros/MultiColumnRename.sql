@@ -24,7 +24,6 @@
 
         {%- elif renameMethod == 'advancedRename' -%}
             {%- set custom_expr_result = SnowflakeSqlBasics.evaluate_expression(customExpression | replace('column_name',  "\'" ~ column ~ "\'")) -%}
-            {{ log("custom_expr_result: ------> " ~ custom_expr_result, info=True) }}
             {%- set custom_expr_result_trimmed = custom_expr_result | trim -%}
             {%- set renamed_column = "\"" ~  column ~ "\"" ~ " AS " ~ "\"" ~  custom_expr_result_trimmed ~ "\"" -%}
         {%- endif -%}
@@ -42,7 +41,7 @@
             {# Split on 'AS' to get the orig column name; assumes expression contains "AS" #}
             {%- set parts = expr.split(' AS "') -%}
             {%- set orig_col_name = parts[0] | trim | replace('"', '') | upper -%}
-            {%- if (col_name_val | trim | replace('"', '') | upper) in orig_col_name -%}
+            {%- if (col_name_val | trim | replace('"', '') | upper) == orig_col_name -%}
                 {%- do output_columns.append(expr) -%}
                 {% do flag_dict.update({"flag": true}) %}
                 {%- break -%}

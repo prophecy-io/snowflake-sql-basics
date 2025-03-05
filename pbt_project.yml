@@ -24,14 +24,14 @@ functions:
   businessRules: {}
 subgraphs: {}
 sqlModels:
-  .prophecy/metadata/sqlmodels/bulkColumnTest:
-    name: bulkColumnTest
+  .prophecy/metadata/sqlmodels/Testing:
+    name: Testing
     schema: null
     description: null
     author: adak.debashis@prophecy.io
     files:
-    - models/bulkColumnTest.sql
-    - .prophecy/ide/models/bulkColumnTest.json
+    - models/Testing.sql
+    - .prophecy/ide/models/Testing.json
     - models/schema.yml
     sqlDependencies:
       models: []
@@ -39,7 +39,7 @@ sqlModels:
       seeds: []
       sources: []
       snapshots: []
-    createdAt: '2025-03-05 08:54:43'
+    createdAt: '2025-03-05 16:37:00'
   .prophecy/metadata/sqlmodels/bulkColumnWithDoble:
     name: bulkColumnWithDoble
     schema: null
@@ -150,6 +150,15 @@ sqlSources:
       description: Test data capturing integer and float values for analysis purposes.
       author: adak.debashis@prophecy.io
       createdAt: '2025-03-05 08:54:43'
+    - name: DIMENSION_SAMPLE
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields: []
+      description: Comprehensive customer dimension data supporting segmentation and
+        analysis of customer types and asset classifications.
+      author: adak.debashis@prophecy.io
+      createdAt: '2025-03-05 16:37:00'
 sqlUnreferencedSources: {}
 sqlPipeline:
   name: sqlPipeline

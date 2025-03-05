@@ -9,6 +9,8 @@
     customExpression='') 
 %}
     {%- set renamed_columns = [] -%}
+    {%- set editWith = editWith | trim | upper -%}
+
     {%- for column in columnNames -%}
         {%- set renamed_column = "" -%}
         {%- if renameMethod == 'editPrefixSuffix' -%}
@@ -22,6 +24,7 @@
 
         {%- elif renameMethod == 'advancedRename' -%}
             {%- set custom_expr_result = SnowflakeSqlBasics.evaluate_expression(customExpression | replace('column_name',  "\'" ~ column ~ "\'")) -%}
+            {{ log("custom_expr_result: ------> " ~ custom_expr_result, info=True) }}
             {%- set custom_expr_result_trimmed = custom_expr_result | trim -%}
             {%- set renamed_column = "\"" ~  column ~ "\"" ~ " AS " ~ "\"" ~  custom_expr_result_trimmed ~ "\"" -%}
         {%- endif -%}

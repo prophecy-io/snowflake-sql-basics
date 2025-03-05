@@ -77,7 +77,7 @@ class MultiColumnRename(MacroSpec):
                                     SelectBox("").addOption("Prefix", "Prefix").addOption("Suffix", "Suffix").bindProperty("editType")
                                 )
                                 .addElement(
-                                    TextBox("").bindPlaceholder("new_").bindProperty("editWith")
+                                    TextBox("").bindPlaceholder("NEW_").bindProperty("editWith")
                                 )                                                                
                             )
                         )
@@ -91,9 +91,14 @@ class MultiColumnRename(MacroSpec):
                         .then(
                             ColumnsLayout(gap=("1rem"), height=("100%"))
                             .addColumn(
-                                TextBox("Enter Custom Expression")
-                                .bindPlaceholder("""Example: concat(column_name, 'xyz')""")
-                                .bindProperty("customExpression")
+                                StackLayout(height="100%")
+                                .addElement(
+                                    ExpressionBox("Output Expression")
+                                    .bindPlaceholder("Write spark sql expression considering `column_name` as column name string literal. Example:\n For column name: upper(column_name)")
+                                    .withSchemaSuggestions()
+                                    .withCopilotEnabledExpression()
+                                    .bindProperty("customExpression")
+                                    )
                                 )
                             )
                     )
@@ -106,9 +111,13 @@ class MultiColumnRename(MacroSpec):
         diagnostics = super(MultiColumnRename, self).validate(context,component)
         props = component.properties
 
-        if len(component.properties.columnNames) == 0:            
+        if len(component.properties.columnNames) == 0:
             diagnostics.append(
                 Diagnostic("component.properties.columnNames", "Select Column to Rename", SeverityLevelEnum.Error))            
+
+        if len(component.properties.renameMethod) == 0:
+            diagnostics.append(
+                Diagnostic("component.properties.renameMethod", "Select Rename Method", SeverityLevelEnum.Error))  
 
         if (
                 component.properties.renameMethod == "editPrefixSuffix" and 
@@ -120,6 +129,10 @@ class MultiColumnRename(MacroSpec):
             ):
             diagnostics.append(
                 Diagnostic("component.properties.renameMethod", "Missing Properties for Edit prefix/suffix Operation", SeverityLevelEnum.Error))
+
+        if (component.properties.renameMethod == "advancedRename" and len(component.properties.customExpression) == 0):
+            diagnostics.append(
+                Diagnostic("component.properties.advancedRename", "Missing Properties for Advanced rename", SeverityLevelEnum.Error))
 
         return diagnostics
 

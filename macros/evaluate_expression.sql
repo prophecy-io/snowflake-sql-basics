@@ -10,6 +10,7 @@
     {% endfor %}
   {%- endif -%}
 {% else %}
+    {# Returning column to fill output port while dbt compile #}
     {{ column }}
 {% endif %}
 {% endmacro %}

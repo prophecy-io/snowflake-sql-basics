@@ -1,4 +1,4 @@
-{% macro evaluate_expression(expression) %}
+{% macro evaluate_expression(expression,column) %}
 
 {% set sql_query = 'select ' ~ expression ~ ' as result' %}
 {% set result = run_query(sql_query) %}
@@ -10,7 +10,7 @@
     {% endfor %}
   {%- endif -%}
 {% else %}
-  {{ log("Query failed or returned no results", info = True) }}
-  {{ log(expression, info = True) }}
+    {# Returning column to fill output port while dbt compile #}
+    {{ column }}
 {% endif %}
 {% endmacro %}

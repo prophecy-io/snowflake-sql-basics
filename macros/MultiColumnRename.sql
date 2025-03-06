@@ -9,7 +9,6 @@
     customExpression='') 
 %}
     {%- set renamed_columns = [] -%}
-    {%- set editWith = editWith | trim | upper -%}
 
     {%- for column in columnNames -%}
         {%- set renamed_column = "" -%}

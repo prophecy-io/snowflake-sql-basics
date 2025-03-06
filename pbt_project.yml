@@ -24,14 +24,14 @@ functions:
   businessRules: {}
 subgraphs: {}
 sqlModels:
-  .prophecy/metadata/sqlmodels/multcolumntest:
-    name: multcolumntest
+  .prophecy/metadata/sqlmodels/multiColumnRenameTesting:
+    name: multiColumnRenameTesting
     schema: null
     description: null
     author: adak.debashis@prophecy.io
     files:
-    - models/multcolumntest.sql
-    - .prophecy/ide/models/multcolumntest.json
+    - models/multiColumnRenameTesting.sql
+    - .prophecy/ide/models/multiColumnRenameTesting.json
     - models/schema.yml
     sqlDependencies:
       models: []
@@ -39,7 +39,7 @@ sqlModels:
       seeds: []
       sources: []
       snapshots: []
-    createdAt: '2025-03-06 16:31:53'
+    createdAt: '2025-03-06 16:58:17'
 sqlSnapshots: {}
 sqlTests: {}
 sqlMacros:

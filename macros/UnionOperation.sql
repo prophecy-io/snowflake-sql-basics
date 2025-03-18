@@ -17,10 +17,11 @@
     {%- set ns = namespace(sql_statement="") %}
 
     {%- for rel in relations %}
+        {%- set relName = "\"" ~ rel ~ "\"" %}
         {%- if loop.first %}
-            {%- set ns.sql_statement = "SELECT * FROM " ~ rel %}
+            {%- set ns.sql_statement = "SELECT * FROM " ~ relName %}
         {%- else %}
-            {%- set ns.sql_statement = ns.sql_statement ~ " " ~ op ~ " SELECT * FROM " ~ rel %}
+            {%- set ns.sql_statement = ns.sql_statement ~ " " ~ op ~ " SELECT * FROM " ~ relName %}
         {%- endif %}
     {%- endfor %}
 

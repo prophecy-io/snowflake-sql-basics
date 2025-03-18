@@ -1,5 +1,8 @@
 
 from dataclasses import dataclass
+
+
+from collections import defaultdict
 from prophecy.cb.sql.Component import *
 from prophecy.cb.sql.MacroBuilderBase import *
 from prophecy.cb.ui.uispec import *
@@ -88,5 +91,3 @@ class UnionOperation(MacroSpec):
                 MacroParameter("operationType", properties.operationType)
             ],
         )
-
-

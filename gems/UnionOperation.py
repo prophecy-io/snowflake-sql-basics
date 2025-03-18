@@ -29,7 +29,7 @@ class UnionOperation(MacroSpec):
             .addColumn(
                 StackLayout()
                 .addElement(
-                    TextBox("Dataframe names seperated with Comma").bindPlaceholder("").bindProperty("relation")
+                    TextBox("Dataframe names seperated with Comma").bindPlaceholder("in0,in1").bindProperty("relation")
                 )
                 .addElement(
                     RadioGroup("Operation Type")
@@ -55,7 +55,18 @@ class UnionOperation(MacroSpec):
 
     def validate(self, context: SqlContext, component: Component) -> List[Diagnostic]:
         # Validate the component's state
-        return super().validate(context,component)
+        diagnostics = super(UnionOperation, self).validate(context, component)
+        props = component.properties
+
+        if len(component.properties.relation) == 0:
+            diagnostics.append(
+                Diagnostic("component.properties.relation", "Please enter the relation names", SeverityLevelEnum.Error))
+
+        if len(component.properties.operationType) == 0:
+            diagnostics.append(
+                Diagnostic("component.properties.operationType", "Please select the operation type", SeverityLevelEnum.Error))
+
+        return diagnostics
 
     def onChange(self, context: SqlContext, oldState: Component, newState: Component) -> Component:
         # Handle changes in the component's state and return the new state

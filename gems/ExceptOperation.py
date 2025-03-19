@@ -36,8 +36,8 @@ class ExceptOperation(MacroSpec):
                     .addOption(
                         "Except",
                         "except",
-                        ("Intersect"),
-                        ("Returns the rows returned by the first query that aren’t also returned by the second query. The MINUS and EXCEPT keywords have the same meaning and can be used interchangeably.")
+                        ("Except"),
+                        ("Returns the rows returned by the first query that aren’t also returned by the second query.")
                     )
                     .setOptionType("button")
                     .setVariant("large")

@@ -1,0 +1,71 @@
+{
+  "id" : "testModel",
+  "metainfo" : {
+    "label" : "testModel",
+    "autoLayout" : false,
+    "staleState" : "file",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "version" : 3,
+    "properties" : {
+      "name" : "testModel",
+      "columns" : [ {
+        "name" : "RECORD_ID1",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "RECORD_ID2",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "SIMILARITY_SCORE",
+        "dataType" : {
+          "type" : "Number"
+        }
+      } ],
+      "tests" : [ ],
+      "providerType" : "snowflake"
+    }
+  },
+  "processes" : {
+    "testModel##seoHBMJL" : {
+      "id" : "testModel##seoHBMJL",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "testModel",
+        "x" : -760,
+        "y" : -640,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT * \n\nFROM FuzzyMatch_1\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "cGlShUDc",
+          "slug" : "FuzzyMatch_1"
+        } ],
+        "outputs" : [ {
+          "id" : "kLzn0Gxu",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ ],
+  "component" : "Model"
+}

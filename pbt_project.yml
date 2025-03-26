@@ -23,21 +23,53 @@ functions:
   airflowFunctions: {}
   businessRules: {}
 subgraphs: {}
-sqlModels: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/test2Model:
+    name: test2Model
+    schema: null
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - models/test2Model.sql
+    - .prophecy/ide/models/test2Model.json
+    - models/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-03-25 11:00:37'
+  .prophecy/metadata/sqlmodels/testModel:
+    name: testModel
+    schema: null
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - models/testModel.sql
+    - .prophecy/ide/models/testModel.json
+    - models/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-03-25 08:20:03'
 sqlSnapshots: {}
 sqlTests: {}
 sqlMacros:
-  .prophecy/metadata/sqlmacros/DataCleansing:
-    name: DataCleansing
+  .prophecy/metadata/sqlmacros/FuzzyMatch:
+    name: FuzzyMatch
     macroType: query
     description: null
-    author: abhisheks+e2etests@prophecy.io
+    author: adak.debashis@prophecy.io
     files:
-    - macros/DataCleansing.sql
-    - .prophecy/ide/macros/DataCleansing.json
+    - macros/FuzzyMatch.sql
+    - .prophecy/ide/macros/FuzzyMatch.json
     - macros/macros.yml
-    - gems/DataCleansing.py
-    createdAt: '2024-11-28 05:23:51'
+    - gems/FuzzyMatch.py
+    createdAt: '2025-03-20 18:35:37'
   .prophecy/metadata/sqlmacros/DynamicSelect:
     name: DynamicSelect
     macroType: query
@@ -60,6 +92,17 @@ sqlMacros:
     - macros/macros.yml
     - gems/ColumnParser.py
     createdAt: '2024-11-28 05:23:18'
+  .prophecy/metadata/sqlmacros/UnionOperation:
+    name: UnionOperation
+    macroType: query
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - macros/UnionOperation.sql
+    - .prophecy/ide/macros/UnionOperation.json
+    - macros/macros.yml
+    - gems/UnionOperation.py
+    createdAt: '2025-03-19 06:39:58'
   .prophecy/metadata/sqlmacros/BulkColumnExpressions:
     name: BulkColumnExpressions
     macroType: query
@@ -82,6 +125,28 @@ sqlMacros:
     - macros/macros.yml
     - gems/BulkColumnRename.py
     createdAt: '2024-11-28 05:22:26'
+  .prophecy/metadata/sqlmacros/TextToColumns:
+    name: TextToColumns
+    macroType: query
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - macros/TextToColumns.sql
+    - .prophecy/ide/macros/TextToColumns.json
+    - macros/macros.yml
+    - gems/TextToColumns.py
+    createdAt: '2025-03-25 10:14:11'
+  .prophecy/metadata/sqlmacros/IntersectOperation:
+    name: IntersectOperation
+    macroType: query
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - macros/IntersectOperation.sql
+    - .prophecy/ide/macros/IntersectOperation.json
+    - macros/macros.yml
+    - gems/IntersectOperation.py
+    createdAt: '2025-03-19 06:42:42'
   .prophecy/metadata/sqlmacros/evaluate_expression:
     name: evaluate_expression
     macroType: expression
@@ -92,16 +157,410 @@ sqlMacros:
     - .prophecy/ide/macros/evaluate_expression.json
     - macros/macros.yml
     createdAt: '2024-11-28 05:21:11'
+  .prophecy/metadata/sqlmacros/DataCleansing:
+    name: DataCleansing
+    macroType: query
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - macros/DataCleansing.sql
+    - .prophecy/ide/macros/DataCleansing.json
+    - macros/macros.yml
+    - gems/DataCleansing.py
+    createdAt: '2024-11-28 05:23:51'
+  .prophecy/metadata/sqlmacros/ExceptOperation:
+    name: ExceptOperation
+    macroType: query
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - macros/ExceptOperation.sql
+    - .prophecy/ide/macros/ExceptOperation.json
+    - macros/macros.yml
+    - gems/ExceptOperation.py
+    createdAt: '2025-03-19 07:04:38'
 sqlSeeds: {}
-sqlSources: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/PROPHECY_EXP_PROPHECY_EXP_SCHEMA:
+    name: PROPHECY_EXP.PROPHECY_EXP_SCHEMA
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-03-19 06:40:23'
+    tables:
+    - name: CUSTOMER
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: C_CUSTOMER_SK
+          dataType:
+            type: Number
+        - name: C_CUSTOMER_ID
+          dataType:
+            type: String
+        - name: C_CURRENT_CDEMO_SK
+          dataType:
+            type: Number
+        - name: C_CURRENT_HDEMO_SK
+          dataType:
+            type: Number
+        - name: C_CURRENT_ADDR_SK
+          dataType:
+            type: Number
+        - name: C_FIRST_SHIPTO_DATE_SK
+          dataType:
+            type: Number
+        - name: C_FIRST_SALES_DATE_SK
+          dataType:
+            type: Number
+        - name: C_SALUTATION
+          dataType:
+            type: String
+        - name: C_FIRST_NAME
+          dataType:
+            type: String
+        - name: C_LAST_NAME
+          dataType:
+            type: String
+        - name: C_PREFERRED_CUST_FLAG
+          dataType:
+            type: String
+        - name: C_BIRTH_DAY
+          dataType:
+            type: Number
+        - name: C_BIRTH_MONTH
+          dataType:
+            type: Number
+        - name: C_BIRTH_YEAR
+          dataType:
+            type: Number
+        - name: C_BIRTH_COUNTRY
+          dataType:
+            type: String
+        - name: C_LOGIN
+          dataType:
+            type: String
+        - name: C_EMAIL_ADDRESS
+          dataType:
+            type: String
+        - name: C_LAST_REVIEW_DATE
+          dataType:
+            type: String
+      description: Customer demographic and contact information, enabling targeted
+        marketing and personalized customer engagement.
+      author: adak.debashis@prophecy.io
+      createdAt: '2025-03-19 06:40:23'
+    - name: ORDERS
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: C_CUSTOMER_SK
+          dataType:
+            type: Number
+        - name: C_CUSTOMER_ID
+          dataType:
+            type: String
+        - name: C_CURRENT_CDEMO_SK
+          dataType:
+            type: Number
+        - name: C_CURRENT_HDEMO_SK
+          dataType:
+            type: Number
+        - name: C_CURRENT_ADDR_SK
+          dataType:
+            type: Number
+        - name: C_FIRST_SHIPTO_DATE_SK
+          dataType:
+            type: Number
+        - name: C_FIRST_SALES_DATE_SK
+          dataType:
+            type: Number
+        - name: C_SALUTATION
+          dataType:
+            type: String
+        - name: C_FIRST_NAME
+          dataType:
+            type: String
+        - name: C_LAST_NAME
+          dataType:
+            type: String
+        - name: C_PREFERRED_CUST_FLAG
+          dataType:
+            type: String
+        - name: C_BIRTH_DAY
+          dataType:
+            type: Number
+        - name: C_BIRTH_MONTH
+          dataType:
+            type: Number
+        - name: C_BIRTH_YEAR
+          dataType:
+            type: Number
+        - name: C_BIRTH_COUNTRY
+          dataType:
+            type: String
+        - name: C_LOGIN
+          dataType:
+            type: String
+        - name: C_EMAIL_ADDRESS
+          dataType:
+            type: String
+        - name: C_LAST_REVIEW_DATE
+          dataType:
+            type: String
+      description: Customer order details, including personal information and demographics,
+        supporting customer relationship management and targeted marketing efforts.
+      author: adak.debashis@prophecy.io
+      createdAt: '2025-03-24 13:25:24'
+    - name: TESTMODEL
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: C_CUSTOMER_SK
+          dataType:
+            type: Number
+        - name: C_CUSTOMER_ID
+          dataType:
+            type: String
+        - name: C_CURRENT_CDEMO_SK
+          dataType:
+            type: Number
+        - name: C_CURRENT_HDEMO_SK
+          dataType:
+            type: Number
+        - name: C_CURRENT_ADDR_SK
+          dataType:
+            type: Number
+        - name: C_FIRST_SHIPTO_DATE_SK
+          dataType:
+            type: Number
+        - name: C_FIRST_SALES_DATE_SK
+          dataType:
+            type: Number
+        - name: C_SALUTATION
+          dataType:
+            type: String
+        - name: C_FIRST_NAME
+          dataType:
+            type: String
+        - name: C_LAST_NAME
+          dataType:
+            type: String
+        - name: C_PREFERRED_CUST_FLAG
+          dataType:
+            type: String
+        - name: C_BIRTH_DAY
+          dataType:
+            type: Number
+        - name: C_BIRTH_MONTH
+          dataType:
+            type: Number
+        - name: C_BIRTH_YEAR
+          dataType:
+            type: Number
+        - name: C_BIRTH_COUNTRY
+          dataType:
+            type: String
+        - name: C_LOGIN
+          dataType:
+            type: String
+        - name: C_EMAIL_ADDRESS
+          dataType:
+            type: String
+        - name: C_LAST_REVIEW_DATE
+          dataType:
+            type: String
+      description: Customer demographic and shipping information, aiding in understanding
+        customer profiles and preferences.
+      author: adak.debashis@prophecy.io
+      createdAt: '2025-03-24 15:43:17'
+    - name: DIMENSION_SAMPLE
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: Dimension Code
+          dataType:
+            type: String
+        - name: Dimension Name
+          dataType:
+            type: String
+        - name: Dimension Short Name
+          dataType:
+            type: String
+        - name: Dimension Description
+          dataType:
+            type: String
+        - name: Dimension Display Name Format
+          dataType:
+            type: String
+        - name: List Dimension
+          dataType:
+            type: Boolean
+        - name: Use On Levels
+          dataType:
+            type: Boolean
+        - name: Dimension Value Code
+          dataType:
+            type: String
+        - name: Dimension Value Name
+          dataType:
+            type: String
+        - name: Dimension Value Display Name
+          dataType:
+            type: String
+        - name: Dimension Value Short Name
+          dataType:
+            type: String
+        - name: Parent
+          dataType:
+            type: String
+        - name: In Use
+          dataType:
+            type: Boolean
+        - name: Description
+          dataType:
+            type: String
+        - name: Property 1
+          dataType:
+            type: String
+        - name: Property 2
+          dataType:
+            type: String
+        - name: Keep Sorted
+          dataType:
+            type: Boolean
+        - name: LAF
+          dataType:
+            type: String
+        - name: Asset Type Code
+          dataType:
+            type: String
+        - name: Asset Type Name
+          dataType:
+            type: String
+        - name: Reason Code Code
+          dataType:
+            type: String
+        - name: Reason Code Name
+          dataType:
+            type: String
+        - name: Status_Capex Code
+          dataType:
+            type: String
+        - name: Status_Capex Name
+          dataType:
+            type: String
+        - name: In Service Date Code
+          dataType:
+            type: String
+        - name: In Service Date Name
+          dataType:
+            type: String
+        - name: Sales Region Code
+          dataType:
+            type: String
+        - name: Sales Region Name
+          dataType:
+            type: String
+        - name: Customer Group Code
+          dataType:
+            type: String
+        - name: Customer Group Name
+          dataType:
+            type: String
+        - name: Customer Type Code
+          dataType:
+            type: String
+        - name: Customer Type Name
+          dataType:
+            type: String
+        - name: Key Customer Code
+          dataType:
+            type: String
+        - name: Key Customer Name
+          dataType:
+            type: String
+      description: Comprehensive asset dimension data that categorizes and describes
+        various customer and asset attributes, enhancing decision-making and reporting
+        capabilities.
+      author: adak.debashis@prophecy.io
+      createdAt: '2025-03-24 15:46:50'
+  .prophecy/metadata/sqlsources/SNOWFLAKE_SAMPLE_DATA_TPCH_SF1:
+    name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1
+    description: null
+    author: adak.debashis@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-03-24 15:47:07'
+    tables:
+    - name: ORDERS
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: O_ORDERKEY
+          dataType:
+            type: Number
+        - name: O_CUSTKEY
+          dataType:
+            type: Number
+        - name: O_ORDERSTATUS
+          dataType:
+            type: String
+        - name: O_TOTALPRICE
+          dataType:
+            type: Number
+        - name: O_ORDERDATE
+          dataType:
+            type: Date
+        - name: O_ORDERPRIORITY
+          dataType:
+            type: String
+        - name: O_CLERK
+          dataType:
+            type: String
+        - name: O_SHIPPRIORITY
+          dataType:
+            type: Number
+        - name: O_COMMENT
+          dataType:
+            type: String
+      description: Order records capturing details such as order date, total price,
+        priority, and status, enabling insights into sales performance and customer
+        behavior.
+      author: adak.debashis@prophecy.io
+      createdAt: '2025-03-24 15:47:07'
 sqlUnreferencedSources: {}
+sqlOrchestratorPipelines: {}
+sqlBusinessApps: {}
 sqlPipeline:
   name: sqlPipeline
   description: null
   author: abhisheks+e2etests@prophecy.io
   createdAt: '2024-11-28 05:20:36'
 dependencies: []
-projectDependencies: {}
+projectDependencies:
+  '22363':
+    projectUID: 22363
+    projectName: ProphecyDatabricksSqlBasics
+    repositoryPath: gitUri=https://github.com/prophecy-io/databricks-sql-basics&subPath=
+    version: 0.0.1
+    isDefault: true
+    author: null
+    createdAt: '2025-03-26 10:06:58'
+  '22364':
+    projectUID: 22364
+    projectName: ProphecySnowflakeSqlBasics
+    repositoryPath: gitUri=https://github.com/prophecy-io/snowflake-sql-basics&subPath=
+    version: 0.0.1
+    isDefault: true
+    author: null
+    createdAt: '2025-03-26 10:06:58'
 flags:
   shouldAddDefaultDependenciesIfAbsent: true
 pipelineConfigurations: {}

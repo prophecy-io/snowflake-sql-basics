@@ -1,0 +1,222 @@
+{
+  "id" : "test2Model",
+  "metainfo" : {
+    "label" : "test2Model",
+    "autoLayout" : false,
+    "staleState" : "file",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "version" : 3,
+    "properties" : {
+      "name" : "test2Model",
+      "columns" : [ {
+        "name" : "C_SALUTATION",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_FIRST_SHIPTO_DATE_SK",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "C_CURRENT_CDEMO_SK",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "C_BIRTH_COUNTRY",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_EMAIL_ADDRESS",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_CUSTOMER_SK",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "C_LOGIN",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_BIRTH_YEAR",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "C_LAST_REVIEW_DATE",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_BIRTH_DAY",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "C_CURRENT_ADDR_SK",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "C_FIRST_SALES_DATE_SK",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "C_FIRST_NAME",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_CURRENT_HDEMO_SK",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "C_PREFERRED_CUST_FLAG",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_LAST_NAME",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_CUSTOMER_ID",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "C_BIRTH_MONTH",
+        "dataType" : {
+          "type" : "Number"
+        }
+      } ],
+      "tests" : [ ],
+      "providerType" : "snowflake"
+    }
+  },
+  "processes" : {
+    "test2Model##eV7hAZFK" : {
+      "id" : "test2Model##eV7hAZFK",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "test2Model",
+        "x" : -1640,
+        "y" : -940,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT * \n\nFROM TextToColumns_1\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "vvnY2VTA",
+          "slug" : "TextToColumns_1"
+        } ],
+        "outputs" : [ {
+          "id" : "nRkCTDz6",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "GK9xpCotlUCkx5rCsLKEL" : {
+      "id" : "GK9xpCotlUCkx5rCsLKEL",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "CUSTOMER",
+        "slug" : "CUSTOMER",
+        "x" : -2340,
+        "y" : -920,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "CUSTOMER",
+          "sourceType" : "Source",
+          "sourceName" : "PROPHECY_EXP.PROPHECY_EXP_SCHEMA",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "DMMRyxUnaT7JJzRtrzsLR",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "BO4a6VSQ1ciXT517eMKiU$$RXWEk_2Q3BPRfFO9cqBzA" : {
+      "id" : "BO4a6VSQ1ciXT517eMKiU$$RXWEk_2Q3BPRfFO9cqBzA",
+      "component" : "TextToColumns",
+      "metadata" : {
+        "label" : "TextToColumns_1",
+        "slug" : "TextToColumns_1",
+        "x" : -2120,
+        "y" : -900,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "parameter1" : "'orders'",
+        "relation_name" : "in0",
+        "_oldMacroProperties" : {
+          "macroName" : "TextToColumns",
+          "projectName" : "SnowflakeSqlBasics",
+          "parameters" : [ {
+            "name" : "parameter1",
+            "value" : "'orders'"
+          } ]
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "6PltZ0Ql6DTfE52RWXo8E$$2m86CUSZ-5MZV-GZsdGGX",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "jl6Sk5xQavKKYdeqT6e3R$$0E8344jzqvvLW-lChlxLa",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "TextToColumns_SnowflakeSqlBasics",
+        "name" : "TextToColumns",
+        "projectName" : "SnowflakeSqlBasics",
+        "sourceProjectName" : "SnowflakeSqlBasics"
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "ruqlE6lHN57cezeGLOM-2",
+    "source" : "GK9xpCotlUCkx5rCsLKEL",
+    "sourcePort" : "DMMRyxUnaT7JJzRtrzsLR",
+    "target" : "BO4a6VSQ1ciXT517eMKiU$$RXWEk_2Q3BPRfFO9cqBzA",
+    "targetPort" : "6PltZ0Ql6DTfE52RWXo8E$$2m86CUSZ-5MZV-GZsdGGX"
+  } ],
+  "component" : "Model"
+}

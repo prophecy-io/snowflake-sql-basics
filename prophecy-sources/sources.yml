@@ -1,0 +1,437 @@
+---
+version: 2
+sources:
+- name: "PROPHECY_EXP.PROPHECY_EXP_SCHEMA"
+  database: "PROPHECY_EXP"
+  schema: "PROPHECY_EXP_SCHEMA"
+  config:
+    enabled: true
+  tables:
+  - name: "CUSTOMER"
+    description: "Customer demographic and contact information, enabling targeted\
+      \ marketing and personalized customer engagement."
+    quoting:
+      identifier: true
+    columns:
+    - name: "C_CUSTOMER_SK"
+      description: "Unique identifier for each customer in the system"
+      dataType:
+        type: "Number"
+    - name: "C_CUSTOMER_ID"
+      description: "Unique identifier for the customer"
+      dataType:
+        type: "String"
+    - name: "C_CURRENT_CDEMO_SK"
+      description: "The current customer demographic key representing customer characteristics."
+      dataType:
+        type: "Number"
+    - name: "C_CURRENT_HDEMO_SK"
+      description: "The current household demographic key associated with the customer"
+      dataType:
+        type: "Number"
+    - name: "C_CURRENT_ADDR_SK"
+      description: "The unique identifier for the customer's current address"
+      dataType:
+        type: "Number"
+    - name: "C_FIRST_SHIPTO_DATE_SK"
+      description: "The identifier for the date when the customer first received a\
+        \ shipment."
+      dataType:
+        type: "Number"
+    - name: "C_FIRST_SALES_DATE_SK"
+      description: "The unique identifier for the date of the customer's first purchase."
+      dataType:
+        type: "Number"
+    - name: "C_SALUTATION"
+      description: "The salutation used for the customer"
+      dataType:
+        type: "String"
+    - name: "C_FIRST_NAME"
+      description: "The first name of the customer"
+      dataType:
+        type: "String"
+    - name: "C_LAST_NAME"
+      description: "The last name of the customer"
+      dataType:
+        type: "String"
+    - name: "C_PREFERRED_CUST_FLAG"
+      description: "Indicates whether the customer is a preferred customer."
+      dataType:
+        type: "String"
+    - name: "C_BIRTH_DAY"
+      description: "The day of the customer's birth"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_MONTH"
+      description: "The month in which the customer was born"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_YEAR"
+      description: "The year of birth of the customer"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_COUNTRY"
+      description: "Country where the customer was born"
+      dataType:
+        type: "String"
+    - name: "C_LOGIN"
+      description: "The login identifier for the customer"
+      dataType:
+        type: "String"
+    - name: "C_EMAIL_ADDRESS"
+      description: "Email address of the customer"
+      dataType:
+        type: "String"
+    - name: "C_LAST_REVIEW_DATE"
+      description: "The date when the customer last reviewed their account"
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "ORDERS"
+    description: "Customer order details, including personal information and demographics,\
+      \ supporting customer relationship management and targeted marketing efforts."
+    columns:
+    - name: "C_CUSTOMER_SK"
+      description: "Unique identifier for the customer in the order system"
+      dataType:
+        type: "Number"
+    - name: "C_CUSTOMER_ID"
+      description: "Unique identifier for the customer"
+      dataType:
+        type: "String"
+    - name: "C_CURRENT_CDEMO_SK"
+      description: "The current customer demographic key for tracking customer characteristics."
+      dataType:
+        type: "Number"
+    - name: "C_CURRENT_HDEMO_SK"
+      description: "Key representing the current household demographics of the customer"
+      dataType:
+        type: "Number"
+    - name: "C_CURRENT_ADDR_SK"
+      description: "The unique identifier for the customer's current address"
+      dataType:
+        type: "Number"
+    - name: "C_FIRST_SHIPTO_DATE_SK"
+      description: "The unique identifier for the date of the customer's first shipment"
+      dataType:
+        type: "Number"
+    - name: "C_FIRST_SALES_DATE_SK"
+      description: "The identifier for the date of the customer's first purchase"
+      dataType:
+        type: "Number"
+    - name: "C_SALUTATION"
+      description: "The salutation used for the customer"
+      dataType:
+        type: "String"
+    - name: "C_FIRST_NAME"
+      description: "The first name of the customer"
+      dataType:
+        type: "String"
+    - name: "C_LAST_NAME"
+      description: "The last name of the customer"
+      dataType:
+        type: "String"
+    - name: "C_PREFERRED_CUST_FLAG"
+      description: "Indicates whether the customer is a preferred customer."
+      dataType:
+        type: "String"
+    - name: "C_BIRTH_DAY"
+      description: "Day of the customer's birth"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_MONTH"
+      description: "The month of the customer's birth"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_YEAR"
+      description: "The year of birth of the customer"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_COUNTRY"
+      description: "Country of birth of the customer"
+      dataType:
+        type: "String"
+    - name: "C_LOGIN"
+      description: "The login identifier for the customer"
+      dataType:
+        type: "String"
+    - name: "C_EMAIL_ADDRESS"
+      description: "Email address of the customer"
+      dataType:
+        type: "String"
+    - name: "C_LAST_REVIEW_DATE"
+      description: "The date when the customer last reviewed their account"
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "TESTMODEL"
+    description: "Customer demographic and shipping information, aiding in understanding\
+      \ customer profiles and preferences."
+    columns:
+    - name: "C_CUSTOMER_SK"
+      description: "Unique identifier for each customer in the system"
+      dataType:
+        type: "Number"
+    - name: "C_CUSTOMER_ID"
+      description: "Unique identifier for the customer"
+      dataType:
+        type: "String"
+    - name: "C_CURRENT_CDEMO_SK"
+      description: "The current customer demographic key for tracking customer characteristics."
+      dataType:
+        type: "Number"
+    - name: "C_CURRENT_HDEMO_SK"
+      description: "The current household demographic key associated with the customer"
+      dataType:
+        type: "Number"
+    - name: "C_CURRENT_ADDR_SK"
+      description: "The unique identifier for the customer's current address"
+      dataType:
+        type: "Number"
+    - name: "C_FIRST_SHIPTO_DATE_SK"
+      description: "The key representing the date of the customer's first shipment."
+      dataType:
+        type: "Number"
+    - name: "C_FIRST_SALES_DATE_SK"
+      description: "The identifier for the date of the customer's first sale"
+      dataType:
+        type: "Number"
+    - name: "C_SALUTATION"
+      description: "The salutation used for the customer"
+      dataType:
+        type: "String"
+    - name: "C_FIRST_NAME"
+      description: "The first name of the customer"
+      dataType:
+        type: "String"
+    - name: "C_LAST_NAME"
+      description: "The last name of the customer"
+      dataType:
+        type: "String"
+    - name: "C_PREFERRED_CUST_FLAG"
+      description: "Indicates whether the customer is a preferred customer"
+      dataType:
+        type: "String"
+    - name: "C_BIRTH_DAY"
+      description: "Day of the customer's birth"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_MONTH"
+      description: "The month in which the customer was born"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_YEAR"
+      description: "The year of birth of the customer"
+      dataType:
+        type: "Number"
+    - name: "C_BIRTH_COUNTRY"
+      description: "Country of birth of the customer"
+      dataType:
+        type: "String"
+    - name: "C_LOGIN"
+      description: "The login identifier for the customer"
+      dataType:
+        type: "String"
+    - name: "C_EMAIL_ADDRESS"
+      description: "Email address of the customer"
+      dataType:
+        type: "String"
+    - name: "C_LAST_REVIEW_DATE"
+      description: "The date when the customer last reviewed their account"
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "DIMENSION_SAMPLE"
+    description: "Comprehensive asset dimension data that categorizes and describes\
+      \ various customer and asset attributes, enhancing decision-making and reporting\
+      \ capabilities."
+    columns:
+    - name: "Dimension Code"
+      description: "Unique identifier for the dimension"
+      dataType:
+        type: "String"
+    - name: "Dimension Name"
+      description: "Full name of the dimension"
+      dataType:
+        type: "String"
+    - name: "Dimension Short Name"
+      description: "Abbreviated name for the dimension"
+      dataType:
+        type: "String"
+    - name: "Dimension Description"
+      description: "Detailed description of the dimension"
+      dataType:
+        type: "String"
+    - name: "Dimension Display Name Format"
+      description: "Format used for displaying the dimension name"
+      dataType:
+        type: "String"
+    - name: "List Dimension"
+      description: "Indicates if the dimension is a list type"
+      dataType:
+        type: "Boolean"
+    - name: "Use On Levels"
+      description: "Indicates whether the dimension can be utilized at different levels\
+        \ of analysis"
+      dataType:
+        type: "Boolean"
+    - name: "Dimension Value Code"
+      description: "Unique code representing a specific value of the dimension"
+      dataType:
+        type: "String"
+    - name: "Dimension Value Name"
+      description: "Name associated with a specific value of the dimension"
+      dataType:
+        type: "String"
+    - name: "Dimension Value Display Name"
+      description: "The display name for the dimension value"
+      dataType:
+        type: "String"
+    - name: "Dimension Value Short Name"
+      description: "A concise version of the dimension value name"
+      dataType:
+        type: "String"
+    - name: "Parent"
+      description: "The parent category or hierarchy level of the dimension"
+      dataType:
+        type: "String"
+    - name: "In Use"
+      description: "Indicates whether the dimension is currently active"
+      dataType:
+        type: "Boolean"
+    - name: "Description"
+      description: "Detailed description of the dimension"
+      dataType:
+        type: "String"
+    - name: "Property 1"
+      description: "Additional attribute related to the dimension"
+      dataType:
+        type: "String"
+    - name: "Property 2"
+      description: "Additional property information related to the dimension"
+      dataType:
+        type: "String"
+    - name: "Keep Sorted"
+      description: "Indicates whether the dimension values should be kept in a sorted\
+        \ order"
+      dataType:
+        type: "Boolean"
+    - name: "LAF"
+      description: "Label associated with the dimension for categorization purposes"
+      dataType:
+        type: "String"
+    - name: "Asset Type Code"
+      description: "Code representing the type of asset"
+      dataType:
+        type: "String"
+    - name: "Asset Type Name"
+      description: "Name of the asset type"
+      dataType:
+        type: "String"
+    - name: "Reason Code Code"
+      description: "Code indicating the reason for a specific categorization"
+      dataType:
+        type: "String"
+    - name: "Reason Code Name"
+      description: "The name associated with the reason code"
+      dataType:
+        type: "String"
+    - name: "Status_Capex Code"
+      description: "Code representing the capital expenditure status"
+      dataType:
+        type: "String"
+    - name: "Status_Capex Name"
+      description: "Name associated with the capital expenditure status"
+      dataType:
+        type: "String"
+    - name: "In Service Date Code"
+      description: "Code representing the date when the asset is put into service"
+      dataType:
+        type: "String"
+    - name: "In Service Date Name"
+      description: "Name associated with the date when the asset is put into service"
+      dataType:
+        type: "String"
+    - name: "Sales Region Code"
+      description: "Code identifying the sales region for the asset"
+      dataType:
+        type: "String"
+    - name: "Sales Region Name"
+      description: "Name of the sales region associated with the dimension"
+      dataType:
+        type: "String"
+    - name: "Customer Group Code"
+      description: "Code representing the customer group"
+      dataType:
+        type: "String"
+    - name: "Customer Group Name"
+      description: "Name of the customer group"
+      dataType:
+        type: "String"
+    - name: "Customer Type Code"
+      description: "Code representing the type of customer"
+      dataType:
+        type: "String"
+    - name: "Customer Type Name"
+      description: "Name describing the type of customer"
+      dataType:
+        type: "String"
+    - name: "Key Customer Code"
+      description: "Code identifying key customers"
+      dataType:
+        type: "String"
+    - name: "Key Customer Name"
+      description: "The name of the key customer associated with the dimension."
+      dataType:
+        type: "String"
+    type: "table"
+- name: "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1"
+  database: "SNOWFLAKE_SAMPLE_DATA"
+  schema: "TPCH_SF1"
+  config:
+    enabled: true
+  tables:
+  - name: "ORDERS"
+    description: "Order records capturing details such as order date, total price,\
+      \ priority, and status, enabling insights into sales performance and customer\
+      \ behavior."
+    quoting:
+      identifier: true
+    columns:
+    - name: "O_ORDERKEY"
+      description: "Unique identifier for each order"
+      dataType:
+        type: "Number"
+    - name: "O_CUSTKEY"
+      description: "The unique identifier for the customer who placed the order"
+      dataType:
+        type: "Number"
+    - name: "O_ORDERSTATUS"
+      description: "Current status of the order"
+      dataType:
+        type: "String"
+    - name: "O_TOTALPRICE"
+      description: "Total price of the order placed by the customer"
+      dataType:
+        type: "Number"
+    - name: "O_ORDERDATE"
+      description: "The date when the order was placed"
+      dataType:
+        type: "Date"
+    - name: "O_ORDERPRIORITY"
+      description: "Priority level assigned to the order"
+      dataType:
+        type: "String"
+    - name: "O_CLERK"
+      description: "The name of the clerk who processed the order"
+      dataType:
+        type: "String"
+    - name: "O_SHIPPRIORITY"
+      description: "Priority level assigned to the shipping of the order"
+      dataType:
+        type: "Number"
+    - name: "O_COMMENT"
+      description: "Comments related to the order"
+      dataType:
+        type: "String"
+    type: "table"

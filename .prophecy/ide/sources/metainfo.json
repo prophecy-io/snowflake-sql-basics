@@ -1,0 +1,973 @@
+{
+  "name" : "SnowflakeSqlBasics",
+  "fileSystem" : {
+    "type" : "Folder",
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "providerType" : "snowflake",
+  "prophecyIDEFolder" : {
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "datasets" : { },
+  "pipelines" : { },
+  "externalSources" : {
+    "type" : "Project",
+    "name" : "",
+    "children" : [ {
+      "type" : "Database",
+      "name" : "PROPHECY_EXP",
+      "children" : [ {
+        "type" : "Schema",
+        "name" : "INFORMATION_SCHEMA",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "PROPHECY_EXP_SCHEMA",
+        "tables" : {
+          "CUSTOMER" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "C_CUSTOMER_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CUSTOMER_ID",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_CURRENT_CDEMO_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CURRENT_HDEMO_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CURRENT_ADDR_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_FIRST_SHIPTO_DATE_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_FIRST_SALES_DATE_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_SALUTATION",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_FIRST_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LAST_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_PREFERRED_CUST_FLAG",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_BIRTH_DAY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_MONTH",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_YEAR",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_COUNTRY",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LOGIN",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_EMAIL_ADDRESS",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LAST_REVIEW_DATE",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "DIMENSION_SAMPLE" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "Dimension Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Dimension Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Dimension Short Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Dimension Description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Dimension Display Name Format",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "List Dimension",
+              "dataType" : {
+                "type" : "Boolean"
+              }
+            }, {
+              "name" : "Use On Levels",
+              "dataType" : {
+                "type" : "Boolean"
+              }
+            }, {
+              "name" : "Dimension Value Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Dimension Value Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Dimension Value Display Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Dimension Value Short Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Parent",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "In Use",
+              "dataType" : {
+                "type" : "Boolean"
+              }
+            }, {
+              "name" : "Description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Property 1",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Property 2",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Keep Sorted",
+              "dataType" : {
+                "type" : "Boolean"
+              }
+            }, {
+              "name" : "LAF",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Asset Type Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Asset Type Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Reason Code Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Reason Code Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Status_Capex Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Status_Capex Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "In Service Date Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "In Service Date Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Sales Region Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Sales Region Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Customer Group Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Customer Group Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Customer Type Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Customer Type Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Key Customer Code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "Key Customer Name",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "ORDERS" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "C_CUSTOMER_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CUSTOMER_ID",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_CURRENT_CDEMO_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CURRENT_HDEMO_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CURRENT_ADDR_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_FIRST_SHIPTO_DATE_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_FIRST_SALES_DATE_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_SALUTATION",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_FIRST_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LAST_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_PREFERRED_CUST_FLAG",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_BIRTH_DAY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_MONTH",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_YEAR",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_COUNTRY",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LOGIN",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_EMAIL_ADDRESS",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LAST_REVIEW_DATE",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "TESTMODEL" : {
+            "entityType" : "VIEW",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "C_CUSTOMER_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CUSTOMER_ID",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_CURRENT_CDEMO_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CURRENT_HDEMO_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_CURRENT_ADDR_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_FIRST_SHIPTO_DATE_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_FIRST_SALES_DATE_SK",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_SALUTATION",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_FIRST_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LAST_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_PREFERRED_CUST_FLAG",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_BIRTH_DAY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_MONTH",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_YEAR",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_BIRTH_COUNTRY",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LOGIN",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_EMAIL_ADDRESS",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_LAST_REVIEW_DATE",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          }
+        }
+      }, {
+        "type" : "Schema",
+        "name" : "PROPHECY_EXP_SCHEMA_MODELS",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "PUBLIC",
+        "children" : [ ]
+      } ]
+    }, {
+      "type" : "Database",
+      "name" : "SNOWFLAKE",
+      "children" : [ {
+        "type" : "Schema",
+        "name" : "ACCOUNT_USAGE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "ALERT",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "BCR_ROLLOUT",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "CORE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "CORTEX",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "DATA_PRIVACY",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "DATA_SHARING_USAGE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "IMAGES",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "INFORMATION_SCHEMA",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "LOCAL",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "MARKETPLACE_NOTIFICATION",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "ML",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "MONITORING",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "NOTIFICATION",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "ORGANIZATION_USAGE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "READER_ACCOUNT_USAGE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "SNOWPARK",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TELEMETRY",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TRUST_CENTER",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "WORKLOAD_INSIGHTS",
+        "children" : [ ]
+      } ]
+    }, {
+      "type" : "Database",
+      "name" : "SNOWFLAKE_SAMPLE_DATA",
+      "children" : [ {
+        "type" : "Schema",
+        "name" : "INFORMATION_SCHEMA",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TPCDS_SF100TCL",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TPCDS_SF10TCL",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TPCH_SF1",
+        "tables" : {
+          "SUPPLIER" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "S_SUPPKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "S_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "S_ADDRESS",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "S_NATIONKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "S_PHONE",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "S_ACCTBAL",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "S_COMMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "REGION" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "R_REGIONKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "R_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "R_COMMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "CUSTOMER" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "C_CUSTKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_ADDRESS",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_NATIONKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_PHONE",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_ACCTBAL",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "C_MKTSEGMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "C_COMMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "ORDERS" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "O_ORDERKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "O_CUSTKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "O_ORDERSTATUS",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "O_TOTALPRICE",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "O_ORDERDATE",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "O_ORDERPRIORITY",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "O_CLERK",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "O_SHIPPRIORITY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "O_COMMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "PARTSUPP" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "PS_PARTKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "PS_SUPPKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "PS_AVAILQTY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "PS_SUPPLYCOST",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "PS_COMMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "NATION" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "N_NATIONKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "N_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "N_REGIONKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "N_COMMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "LINEITEM" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "L_ORDERKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "L_PARTKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "L_SUPPKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "L_LINENUMBER",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "L_QUANTITY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "L_EXTENDEDPRICE",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "L_DISCOUNT",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "L_TAX",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "L_RETURNFLAG",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "L_LINESTATUS",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "L_SHIPDATE",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "L_COMMITDATE",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "L_RECEIPTDATE",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "L_SHIPINSTRUCT",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "L_SHIPMODE",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "L_COMMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "PART" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "P_PARTKEY",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "P_NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "P_MFGR",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "P_BRAND",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "P_TYPE",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "P_SIZE",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "P_CONTAINER",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "P_RETAILPRICE",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "P_COMMENT",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          }
+        }
+      }, {
+        "type" : "Schema",
+        "name" : "TPCH_SF10",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TPCH_SF100",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TPCH_SF1000",
+        "children" : [ ]
+      } ]
+    } ]
+  },
+  "dependenciesContainer" : {
+    "dependencies" : { },
+    "prophecyProjectDependencies" : { }
+  },
+  "entitiesToSync" : [ ],
+  "frontEndLanguage" : "sql"
+}

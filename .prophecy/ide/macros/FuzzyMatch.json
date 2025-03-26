@@ -1,0 +1,374 @@
+{
+  "FuzzyMatch" : {
+    "name" : "FuzzyMatch",
+    "macroType" : "query",
+    "definition" : "\n\n{% if mode == 'PURGE' or mode == 'MERGE' %}\n    {% set selects = [] %}\n    {% for key, columns in matchFields.items() %}\n        {% if key == 'custom' %}\n            {% set func_name = 'EDITDISTANCE' %}\n        {% elif key == 'name' %}\n            {% set func_name = 'JAROWINKLER_SIMILARITY' %}\n        {% elif key == 'phone' %}\n            {% set func_name = 'EQUALS' %}\n        {% elif key == 'address' %}\n            {% set func_name = 'JAROWINKLER_SIMILARITY' %}\n        {% elif key == 'exact' %}\n            {% set func_name = 'EXACT' %} \n        {% elif key == 'equals' %}\n            {% set func_name = 'EQUALS' %}                                               \n        {% else %}\n            {% set func_name = 'JAROWINKLER_SIMILARITY' %}\n        {% endif %}\n\n        {% for col in columns %}\n            {% if key == 'custom' %}\n                {% set column_value_expr = \"UPPER(REGEXP_REPLACE(\" ~ col ~ \"::string, '[[:punct:]]', ''))\" %}\n            {% elif key == 'name' %}\n                {% set column_value_expr = \"UPPER(REGEXP_REPLACE(\" ~ col ~ \"::string, '[[:punct:]]', ''))\" %}\n            {% elif key == 'address' %}\n                {% set column_value_expr = \"UPPER(REGEXP_REPLACE(\" ~ col ~ \"::string, '[[:punct:]]', ''))\" %}                           \n            {% else %}\n                {% set column_value_expr = col ~ \"::string\" %}\n            {% endif %}\n            \n            {% if mode == 'PURGE' %}\n                {% set select_stmt = \"select \" ~ recordIdCol ~ \"::string as record_id, upper('\" ~ col ~ \"') as column_name, \" ~ column_value_expr ~ \" as column_value, '\" ~ func_name ~ \"' as function_name from \" ~ relation %}\n            {% elif mode == 'MERGE' %}\n                {% set select_stmt = \"select \" ~ recordIdCol ~ \"::string as record_id, \" ~ sourceIdCol ~ \"::string as source_id, upper('\" ~ col ~ \"') as column_name, \" ~ column_value_expr ~ \" as column_value, '\" ~ func_name ~ \"' as function_name from \" ~ relation %}\n            {% endif %}\n\n            {% do selects.append(select_stmt) %}\n        {% endfor %}\n        \n    {% endfor %}\n\n    {% set match_function_cte = selects | join(\" union all \") %}\n\nwith match_function as (\n    {{ match_function_cte }}\n),\ncross_join_data as (\n    select\n        df0.record_id as record_id1,\n        df1.record_id as record_id2,\n        {% if mode == 'MERGE' %}\n            df0.source_id as source_id1,\n            df1.source_id as source_id2,        \n        {% endif %}\n        df0.column_value as column_value_1,\n        df1.column_value as column_value_2,\n        df0.column_name as column_name,\n        df0.function_name as function_name\n    from match_function as df0\n    cross join match_function as df1\n    where df0.record_id <> df1.record_id\n      and df0.function_name = df1.function_name\n      and df0.column_name = df1.column_name\n    {% if mode == 'MERGE' %}\n       and df0.source_id <> df1.source_id  \n    {% endif %}\n),\nimpose_function_match as (\n    select \n        record_id1,\n        record_id2,\n        {% if mode == 'MERGE' %}\n            source_id1,\n            source_id2,        \n        {% endif %}        \n        column_name,\n        function_name,\n        case \n            when function_name = 'EDITDISTANCE' then\n                (1 - ( EDITDISTANCE(column_value_1, column_value_2) / GREATEST(length(column_value_1), length(column_value_2)))) * 100\n            when function_name = 'JAROWINKLER_SIMILARITY' then\n                JAROWINKLER_SIMILARITY(column_value_1, column_value_2)\n            when function_name = 'EXACT' AND (column_value_1 = REVERSE(column_value_2) AND column_value_2 = REVERSE(column_value_1)) then\n                100.0\n            when function_name = 'EXACT' AND (column_value_1 <> REVERSE(column_value_2) OR column_value_2 = REVERSE(column_value_1)) then\n                0.0\n            when function_name = 'EQUALS' AND column_value_1 = column_value_2 then\n                100.0\n            when function_name = 'EQUALS' AND column_value_1 <> column_value_2 then\n                0.0\n            else\n                {# Fallback to Levenshtein distance #}\n                (1 - ( EDITDISTANCE(column_value_1, column_value_2) / GREATEST(length(column_value_1), length(column_value_2)))) * 100\n        end as similarity_score\n    from cross_join_data\n),\nreplace_record_ids as (\n    select \n        GREATEST(record_id1, record_id2) as record_id1,\n        LEAST(record_id1, record_id2) as record_id2,\n        column_name,\n        function_name,\n        similarity_score\n    from impose_function_match\n),\nfinal_output as (\n    select distinct\n        record_id1,\n        record_id2,      \n        round(sum(similarity_score) over(partition by record_id1, record_id2) / count(1) over(partition by record_id1, record_id2),2) as similarity_score\n    from replace_record_ids\n)\n    {% if includeSimilarityScore %}\n        select \n            record_id1, \n            record_id2,        \n            similarity_score from final_output\n        where similarity_score >= {{ matchThresholdPercentage }}\n    {% else %}\n        select \n            record_id1, \n            record_id2             \n            from final_output\n        where similarity_score >= {{ matchThresholdPercentage }}\n    {% endif %}\n\n{% else %}\n    select * from {{ relation }}\n{% endif %}",
+    "parameters" : {
+      "type" : "record",
+      "fields" : [ {
+        "name" : "relation",
+        "kind" : {
+          "type" : "value"
+        },
+        "optional" : false,
+        "comment" : "",
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      }, {
+        "name" : "mode",
+        "kind" : {
+          "type" : "value"
+        },
+        "optional" : false,
+        "comment" : "",
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      }, {
+        "name" : "sourceIdCol",
+        "kind" : {
+          "type" : "value"
+        },
+        "optional" : false,
+        "comment" : "",
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      }, {
+        "name" : "recordIdCol",
+        "kind" : {
+          "type" : "value"
+        },
+        "optional" : false,
+        "comment" : "",
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      }, {
+        "name" : "matchFields",
+        "kind" : {
+          "type" : "value"
+        },
+        "optional" : false,
+        "comment" : "",
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      }, {
+        "name" : "matchThresholdPercentage",
+        "kind" : {
+          "type" : "value",
+          "value" : "0"
+        },
+        "optional" : true,
+        "comment" : "",
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      }, {
+        "name" : "includeSimilarityScore",
+        "kind" : {
+          "type" : "value",
+          "value" : "False"
+        },
+        "optional" : true,
+        "comment" : "",
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      } ]
+    },
+    "staleState" : "none",
+    "propertiesFile" : {
+      "name" : "macros",
+      "content" : "---\nversion: 2\nmacros:\n- name: \"evaluate_expression\"\n  arguments:\n  - name: \"expression\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"expression\"\n- name: \"BulkColumnExpressions\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"columnNames\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"expressionToBeApplied\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"prefixSuffixToBeAdded\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"changeOutputFieldName\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"isPrefix\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"changeOutputFieldType\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"castOutputTypeName\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"copyOriginalColumns\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"remainingColumns\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"prefixSuffixOption\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"dataType\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"BulkColumnRename\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"columnNames\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"renameMethod\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"prefix\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"suffix\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"customExpression\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"ColumnParser\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"parserType\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"columnToParse\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"schema\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"DataCleansing\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"schema\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"null_operation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"columnNames\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"replaceNullTextFields\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"replaceNullTextWith\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"replaceNullForNumericFields\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"replaceNullNumericWith\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"trimWhiteSpace\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"removeTabsLineBreaksAndDuplicateWhitespace\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"allWhiteSpace\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"cleanLetters\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"cleanPunctuations\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"cleanNumbers\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"makeLowercase\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"makeUppercase\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"makeTitlecase\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"DynamicSelect\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"} {\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"schema\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"} {\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"targetTypes\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"} {\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"selectUsing\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"} {\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"customExpression\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"} {\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"UnionOperation\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"operationType\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"IntersectOperation\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"operationType\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"ExceptOperation\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"operationType\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"MinusOperation\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"operationType\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n- name: \"FuzzyMatch\"\n  arguments:\n  - name: \"relation\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"mode\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"sourceIdCol\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"recordIdCol\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"matchFields\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"matchThresholdPercentage\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  - name: \"includeSimilarityScore\"\n    type: \"value\"\n    description: \"{\\\"ProphecyType\\\": \\\"value\\\"}\"\n  macroType: \"query\"\n",
+      "path" : "SnowflakeSqlBasics/macros/macros.yml",
+      "projectConfiguration" : null,
+      "folderConfiguration" : {
+        "version" : 2,
+        "macros" : [ {
+          "name" : "evaluate_expression",
+          "arguments" : [ {
+            "name" : "expression",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "expression"
+        }, {
+          "name" : "BulkColumnExpressions",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "columnNames",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "expressionToBeApplied",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "prefixSuffixToBeAdded",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "changeOutputFieldName",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "isPrefix",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "changeOutputFieldType",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "castOutputTypeName",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "copyOriginalColumns",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "remainingColumns",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "prefixSuffixOption",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "dataType",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "BulkColumnRename",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "columnNames",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "renameMethod",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "prefix",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "suffix",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "customExpression",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "ColumnParser",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "parserType",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "columnToParse",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "schema",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "DataCleansing",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "schema",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "null_operation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "columnNames",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "replaceNullTextFields",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "replaceNullTextWith",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "replaceNullForNumericFields",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "replaceNullNumericWith",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "trimWhiteSpace",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "removeTabsLineBreaksAndDuplicateWhitespace",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "allWhiteSpace",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "cleanLetters",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "cleanPunctuations",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "cleanNumbers",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "makeLowercase",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "makeUppercase",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "makeTitlecase",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "DynamicSelect",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"} {\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "schema",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"} {\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "targetTypes",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"} {\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "selectUsing",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"} {\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "customExpression",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"} {\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "UnionOperation",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "operationType",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "IntersectOperation",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "operationType",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "ExceptOperation",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "operationType",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "MinusOperation",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "operationType",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        }, {
+          "name" : "FuzzyMatch",
+          "arguments" : [ {
+            "name" : "relation",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "mode",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "sourceIdCol",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "recordIdCol",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "matchFields",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "matchThresholdPercentage",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          }, {
+            "name" : "includeSimilarityScore",
+            "type" : "value",
+            "description" : "{\"ProphecyType\": \"value\"}"
+          } ],
+          "macroType" : "query"
+        } ]
+      },
+      "packagesYml" : null,
+      "editable" : true
+    },
+    "version" : 0
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "IntersectOperation" : {
+    "name" : "IntersectOperation",
+    "macroType" : "query",
+    "definition" : "\n    {{ log(\"Parameters are: \" ~ relation ~ \", \" ~ operationType, info=True) }}\n    {% set relations = relation.split(',') | map('trim') | reject('equalto', '') | list %}\n    {% if operationType | lower == \"intersect\" %}\n        {% set op = \"INTERSECT\" %}\n    {% else %}\n        {% set op = operationType %}\n    {% endif %}\n    {% set ns = namespace(sql_statement=\"\") %}\n\n    {% for rel in relations %}\n        {% if loop.first %}\n            {% set ns.sql_statement = \"SELECT * FROM \" ~ rel %}\n        {% else %}\n            {% set ns.sql_statement = ns.sql_statement ~ \" \" ~ op ~ \" SELECT * FROM \" ~ rel %}\n        {% endif %}\n    {% endfor %}\n\n    {{ log(\"Final SQL statement is: \" ~ ns.sql_statement, info=True) }}\n    {{ return(ns.sql_statement) }}",
+    "parameters" : {
+      "type" : "record",
+      "fields" : [ {
+        "name" : "relation",
+        "kind" : {
+          "type" : "value"
+        },
+        "optional" : false,
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      }, {
+        "name" : "operationType",
+        "kind" : {
+          "type" : "value"
+        },
+        "optional" : false,
+        "isWorkflowNodeConfiguration" : false,
+        "isReferenced" : false
+      } ]
+    },
+    "staleState" : "none",
+    "version" : 0
+  }
+}

@@ -1,0 +1,72 @@
+---
+version: 2
+models:
+- name: "testModel"
+  columns:
+  - name: "RECORD_ID1"
+    dataType:
+      type: "String"
+  - name: "RECORD_ID2"
+    dataType:
+      type: "String"
+  - name: "SIMILARITY_SCORE"
+    dataType:
+      type: "Number"
+  tests: []
+- name: "test2Model"
+  columns:
+  - name: "C_SALUTATION"
+    dataType:
+      type: "String"
+  - name: "C_FIRST_SHIPTO_DATE_SK"
+    dataType:
+      type: "Number"
+  - name: "C_CURRENT_CDEMO_SK"
+    dataType:
+      type: "Number"
+  - name: "C_BIRTH_COUNTRY"
+    dataType:
+      type: "String"
+  - name: "C_EMAIL_ADDRESS"
+    dataType:
+      type: "String"
+  - name: "C_CUSTOMER_SK"
+    dataType:
+      type: "Number"
+  - name: "C_LOGIN"
+    dataType:
+      type: "String"
+  - name: "C_BIRTH_YEAR"
+    dataType:
+      type: "Number"
+  - name: "C_LAST_REVIEW_DATE"
+    dataType:
+      type: "String"
+  - name: "C_BIRTH_DAY"
+    dataType:
+      type: "Number"
+  - name: "C_CURRENT_ADDR_SK"
+    dataType:
+      type: "Number"
+  - name: "C_FIRST_SALES_DATE_SK"
+    dataType:
+      type: "Number"
+  - name: "C_FIRST_NAME"
+    dataType:
+      type: "String"
+  - name: "C_CURRENT_HDEMO_SK"
+    dataType:
+      type: "Number"
+  - name: "C_PREFERRED_CUST_FLAG"
+    dataType:
+      type: "String"
+  - name: "C_LAST_NAME"
+    dataType:
+      type: "String"
+  - name: "C_CUSTOMER_ID"
+    dataType:
+      type: "String"
+  - name: "C_BIRTH_MONTH"
+    dataType:
+      type: "Number"
+  tests: []

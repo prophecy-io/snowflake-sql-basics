@@ -144,11 +144,12 @@
       "id" : "GK9xpCotlUCkx5rCsLKEL",
       "component" : "Source",
       "metadata" : {
-        "label" : "CUSTOMER",
-        "slug" : "CUSTOMER",
+        "label" : "CUSTOMERSS",
+        "slug" : "CUSTOMERSS",
         "x" : -2340,
         "y" : -920,
-        "phase" : 0
+        "phase" : 0,
+        "isLabelGrayed" : false
       },
       "properties" : {
         "table" : {
@@ -168,14 +169,14 @@
         "autoUpdateOnRun" : false
       }
     },
-    "BO4a6VSQ1ciXT517eMKiU$$RXWEk_2Q3BPRfFO9cqBzA" : {
-      "id" : "BO4a6VSQ1ciXT517eMKiU$$RXWEk_2Q3BPRfFO9cqBzA",
+    "sJNh_nlQpUyalBisfVWBK$$ciNMc7JGtvSRCgnBNqnnG" : {
+      "id" : "sJNh_nlQpUyalBisfVWBK$$ciNMc7JGtvSRCgnBNqnnG",
       "component" : "TextToColumns",
       "metadata" : {
         "label" : "TextToColumns_1",
         "slug" : "TextToColumns_1",
-        "x" : -2120,
-        "y" : -900,
+        "x" : -2100,
+        "y" : -1000,
         "phase" : 0,
         "macroDependencies" : [ ]
       },
@@ -188,16 +189,19 @@
           "parameters" : [ {
             "name" : "parameter1",
             "value" : "'orders'"
+          }, {
+            "name" : "relation_name",
+            "value" : "in0"
           } ]
         }
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "6PltZ0Ql6DTfE52RWXo8E$$2m86CUSZ-5MZV-GZsdGGX",
+          "id" : "W5dEQU-l3EmNQehcTGdLy$$MStc_FcT-pbzJEB-j_y_m",
           "slug" : "in0"
         } ],
         "outputs" : [ {
-          "id" : "jl6Sk5xQavKKYdeqT6e3R$$0E8344jzqvvLW-lChlxLa",
+          "id" : "BFqJn-3NxupoU8IWjHZBI$$f4gZ757V1w71dvD91qfvn",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false,
@@ -212,11 +216,11 @@
     }
   },
   "connections" : [ {
-    "id" : "ruqlE6lHN57cezeGLOM-2",
+    "id" : "WYnUnD8HNP93SJvmRnRk1",
     "source" : "GK9xpCotlUCkx5rCsLKEL",
     "sourcePort" : "DMMRyxUnaT7JJzRtrzsLR",
-    "target" : "BO4a6VSQ1ciXT517eMKiU$$RXWEk_2Q3BPRfFO9cqBzA",
-    "targetPort" : "6PltZ0Ql6DTfE52RWXo8E$$2m86CUSZ-5MZV-GZsdGGX"
+    "target" : "sJNh_nlQpUyalBisfVWBK$$ciNMc7JGtvSRCgnBNqnnG",
+    "targetPort" : "W5dEQU-l3EmNQehcTGdLy$$MStc_FcT-pbzJEB-j_y_m"
   } ],
   "component" : "Model"
 }

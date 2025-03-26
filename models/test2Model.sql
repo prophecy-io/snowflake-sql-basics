@@ -1,4 +1,4 @@
-WITH CUSTOMER AS (
+WITH CUSTOMERSSTT AS (
 
   SELECT * 
   
@@ -8,8 +8,7 @@ WITH CUSTOMER AS (
 
 TextToColumns_1 AS (
 
-  {#Transforms customer data into a structured format for better analysis.#}
-  {{ SnowflakeSqlBasics.TextToColumns('CUSTOMER') }}
+  {{ SnowflakeSqlBasics.TextToColumns('orders', in0) }}
 
 )
 

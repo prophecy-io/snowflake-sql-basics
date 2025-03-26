@@ -144,10 +144,10 @@
       "id" : "GK9xpCotlUCkx5rCsLKEL",
       "component" : "Source",
       "metadata" : {
-        "label" : "CUSTOMERSS",
-        "slug" : "CUSTOMERSS",
+        "label" : "CUSTOMERSSTT",
+        "slug" : "CUSTOMERSSTT",
         "x" : -2340,
-        "y" : -920,
+        "y" : -1060,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -169,39 +169,28 @@
         "autoUpdateOnRun" : false
       }
     },
-    "sJNh_nlQpUyalBisfVWBK$$ciNMc7JGtvSRCgnBNqnnG" : {
-      "id" : "sJNh_nlQpUyalBisfVWBK$$ciNMc7JGtvSRCgnBNqnnG",
+    "jc9zwN-Y9uJfmcCuYXHb7$$vbnhy3EAiciXEu7FV-MC4" : {
+      "id" : "jc9zwN-Y9uJfmcCuYXHb7$$vbnhy3EAiciXEu7FV-MC4",
       "component" : "TextToColumns",
       "metadata" : {
         "label" : "TextToColumns_1",
         "slug" : "TextToColumns_1",
-        "x" : -2100,
-        "y" : -1000,
+        "x" : -2140,
+        "y" : -1040,
         "phase" : 0,
         "macroDependencies" : [ ]
       },
       "properties" : {
         "parameter1" : "'orders'",
-        "relation_name" : "in0",
-        "_oldMacroProperties" : {
-          "macroName" : "TextToColumns",
-          "projectName" : "SnowflakeSqlBasics",
-          "parameters" : [ {
-            "name" : "parameter1",
-            "value" : "'orders'"
-          }, {
-            "name" : "relation_name",
-            "value" : "in0"
-          } ]
-        }
+        "relation_name" : [ "CUSTOMERSSTT" ]
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "W5dEQU-l3EmNQehcTGdLy$$MStc_FcT-pbzJEB-j_y_m",
+          "id" : "t8kDY8CP4hrq55RAS3uVk$$Fc6qOX7wclXDApFls9hMq",
           "slug" : "in0"
         } ],
         "outputs" : [ {
-          "id" : "BFqJn-3NxupoU8IWjHZBI$$f4gZ757V1w71dvD91qfvn",
+          "id" : "Gl-eAQbnCZTo5g5CFCQqr$$PVzeFvPUMWzj_s8n9n0mA",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false,
@@ -216,11 +205,11 @@
     }
   },
   "connections" : [ {
-    "id" : "WYnUnD8HNP93SJvmRnRk1",
+    "id" : "WZikP5BzOvipj8fr_f1fl",
     "source" : "GK9xpCotlUCkx5rCsLKEL",
     "sourcePort" : "DMMRyxUnaT7JJzRtrzsLR",
-    "target" : "sJNh_nlQpUyalBisfVWBK$$ciNMc7JGtvSRCgnBNqnnG",
-    "targetPort" : "W5dEQU-l3EmNQehcTGdLy$$MStc_FcT-pbzJEB-j_y_m"
+    "target" : "jc9zwN-Y9uJfmcCuYXHb7$$vbnhy3EAiciXEu7FV-MC4",
+    "targetPort" : "t8kDY8CP4hrq55RAS3uVk$$Fc6qOX7wclXDApFls9hMq"
   } ],
   "component" : "Model"
 }

@@ -193,61 +193,7 @@ sqlSources:
       schema:
         entityType: ''
         providerType: snowflake
-        fields:
-        - name: C_CUSTOMER_SK
-          dataType:
-            type: Number
-        - name: C_CUSTOMER_ID
-          dataType:
-            type: String
-        - name: C_CURRENT_CDEMO_SK
-          dataType:
-            type: Number
-        - name: C_CURRENT_HDEMO_SK
-          dataType:
-            type: Number
-        - name: C_CURRENT_ADDR_SK
-          dataType:
-            type: Number
-        - name: C_FIRST_SHIPTO_DATE_SK
-          dataType:
-            type: Number
-        - name: C_FIRST_SALES_DATE_SK
-          dataType:
-            type: Number
-        - name: C_SALUTATION
-          dataType:
-            type: String
-        - name: C_FIRST_NAME
-          dataType:
-            type: String
-        - name: C_LAST_NAME
-          dataType:
-            type: String
-        - name: C_PREFERRED_CUST_FLAG
-          dataType:
-            type: String
-        - name: C_BIRTH_DAY
-          dataType:
-            type: Number
-        - name: C_BIRTH_MONTH
-          dataType:
-            type: Number
-        - name: C_BIRTH_YEAR
-          dataType:
-            type: Number
-        - name: C_BIRTH_COUNTRY
-          dataType:
-            type: String
-        - name: C_LOGIN
-          dataType:
-            type: String
-        - name: C_EMAIL_ADDRESS
-          dataType:
-            type: String
-        - name: C_LAST_REVIEW_DATE
-          dataType:
-            type: String
+        fields: []
       description: Customer demographic and contact information, enabling targeted
         marketing and personalized customer engagement.
       author: adak.debashis@prophecy.io
@@ -256,61 +202,7 @@ sqlSources:
       schema:
         entityType: ''
         providerType: snowflake
-        fields:
-        - name: C_CUSTOMER_SK
-          dataType:
-            type: Number
-        - name: C_CUSTOMER_ID
-          dataType:
-            type: String
-        - name: C_CURRENT_CDEMO_SK
-          dataType:
-            type: Number
-        - name: C_CURRENT_HDEMO_SK
-          dataType:
-            type: Number
-        - name: C_CURRENT_ADDR_SK
-          dataType:
-            type: Number
-        - name: C_FIRST_SHIPTO_DATE_SK
-          dataType:
-            type: Number
-        - name: C_FIRST_SALES_DATE_SK
-          dataType:
-            type: Number
-        - name: C_SALUTATION
-          dataType:
-            type: String
-        - name: C_FIRST_NAME
-          dataType:
-            type: String
-        - name: C_LAST_NAME
-          dataType:
-            type: String
-        - name: C_PREFERRED_CUST_FLAG
-          dataType:
-            type: String
-        - name: C_BIRTH_DAY
-          dataType:
-            type: Number
-        - name: C_BIRTH_MONTH
-          dataType:
-            type: Number
-        - name: C_BIRTH_YEAR
-          dataType:
-            type: Number
-        - name: C_BIRTH_COUNTRY
-          dataType:
-            type: String
-        - name: C_LOGIN
-          dataType:
-            type: String
-        - name: C_EMAIL_ADDRESS
-          dataType:
-            type: String
-        - name: C_LAST_REVIEW_DATE
-          dataType:
-            type: String
+        fields: []
       description: Customer order details, including personal information and demographics,
         supporting customer relationship management and targeted marketing efforts.
       author: adak.debashis@prophecy.io
@@ -319,61 +211,7 @@ sqlSources:
       schema:
         entityType: ''
         providerType: snowflake
-        fields:
-        - name: C_CUSTOMER_SK
-          dataType:
-            type: Number
-        - name: C_CUSTOMER_ID
-          dataType:
-            type: String
-        - name: C_CURRENT_CDEMO_SK
-          dataType:
-            type: Number
-        - name: C_CURRENT_HDEMO_SK
-          dataType:
-            type: Number
-        - name: C_CURRENT_ADDR_SK
-          dataType:
-            type: Number
-        - name: C_FIRST_SHIPTO_DATE_SK
-          dataType:
-            type: Number
-        - name: C_FIRST_SALES_DATE_SK
-          dataType:
-            type: Number
-        - name: C_SALUTATION
-          dataType:
-            type: String
-        - name: C_FIRST_NAME
-          dataType:
-            type: String
-        - name: C_LAST_NAME
-          dataType:
-            type: String
-        - name: C_PREFERRED_CUST_FLAG
-          dataType:
-            type: String
-        - name: C_BIRTH_DAY
-          dataType:
-            type: Number
-        - name: C_BIRTH_MONTH
-          dataType:
-            type: Number
-        - name: C_BIRTH_YEAR
-          dataType:
-            type: Number
-        - name: C_BIRTH_COUNTRY
-          dataType:
-            type: String
-        - name: C_LOGIN
-          dataType:
-            type: String
-        - name: C_EMAIL_ADDRESS
-          dataType:
-            type: String
-        - name: C_LAST_REVIEW_DATE
-          dataType:
-            type: String
+        fields: []
       description: Customer demographic and shipping information, aiding in understanding
         customer profiles and preferences.
       author: adak.debashis@prophecy.io
@@ -382,109 +220,7 @@ sqlSources:
       schema:
         entityType: ''
         providerType: snowflake
-        fields:
-        - name: Dimension Code
-          dataType:
-            type: String
-        - name: Dimension Name
-          dataType:
-            type: String
-        - name: Dimension Short Name
-          dataType:
-            type: String
-        - name: Dimension Description
-          dataType:
-            type: String
-        - name: Dimension Display Name Format
-          dataType:
-            type: String
-        - name: List Dimension
-          dataType:
-            type: Boolean
-        - name: Use On Levels
-          dataType:
-            type: Boolean
-        - name: Dimension Value Code
-          dataType:
-            type: String
-        - name: Dimension Value Name
-          dataType:
-            type: String
-        - name: Dimension Value Display Name
-          dataType:
-            type: String
-        - name: Dimension Value Short Name
-          dataType:
-            type: String
-        - name: Parent
-          dataType:
-            type: String
-        - name: In Use
-          dataType:
-            type: Boolean
-        - name: Description
-          dataType:
-            type: String
-        - name: Property 1
-          dataType:
-            type: String
-        - name: Property 2
-          dataType:
-            type: String
-        - name: Keep Sorted
-          dataType:
-            type: Boolean
-        - name: LAF
-          dataType:
-            type: String
-        - name: Asset Type Code
-          dataType:
-            type: String
-        - name: Asset Type Name
-          dataType:
-            type: String
-        - name: Reason Code Code
-          dataType:
-            type: String
-        - name: Reason Code Name
-          dataType:
-            type: String
-        - name: Status_Capex Code
-          dataType:
-            type: String
-        - name: Status_Capex Name
-          dataType:
-            type: String
-        - name: In Service Date Code
-          dataType:
-            type: String
-        - name: In Service Date Name
-          dataType:
-            type: String
-        - name: Sales Region Code
-          dataType:
-            type: String
-        - name: Sales Region Name
-          dataType:
-            type: String
-        - name: Customer Group Code
-          dataType:
-            type: String
-        - name: Customer Group Name
-          dataType:
-            type: String
-        - name: Customer Type Code
-          dataType:
-            type: String
-        - name: Customer Type Name
-          dataType:
-            type: String
-        - name: Key Customer Code
-          dataType:
-            type: String
-        - name: Key Customer Name
-          dataType:
-            type: String
+        fields: []
       description: Comprehensive asset dimension data that categorizes and describes
         various customer and asset attributes, enhancing decision-making and reporting
         capabilities.
@@ -502,34 +238,7 @@ sqlSources:
       schema:
         entityType: ''
         providerType: snowflake
-        fields:
-        - name: O_ORDERKEY
-          dataType:
-            type: Number
-        - name: O_CUSTKEY
-          dataType:
-            type: Number
-        - name: O_ORDERSTATUS
-          dataType:
-            type: String
-        - name: O_TOTALPRICE
-          dataType:
-            type: Number
-        - name: O_ORDERDATE
-          dataType:
-            type: Date
-        - name: O_ORDERPRIORITY
-          dataType:
-            type: String
-        - name: O_CLERK
-          dataType:
-            type: String
-        - name: O_SHIPPRIORITY
-          dataType:
-            type: Number
-        - name: O_COMMENT
-          dataType:
-            type: String
+        fields: []
       description: Order records capturing details such as order date, total price,
         priority, and status, enabling insights into sales performance and customer
         behavior.
@@ -545,22 +254,22 @@ sqlPipeline:
   createdAt: '2024-11-28 05:20:36'
 dependencies: []
 projectDependencies:
-  '22363':
-    projectUID: 22363
-    projectName: ProphecyDatabricksSqlBasics
-    repositoryPath: gitUri=https://github.com/prophecy-io/databricks-sql-basics&subPath=
-    version: 0.0.1
-    isDefault: true
-    author: null
-    createdAt: '2025-03-26 10:06:58'
-  '22364':
-    projectUID: 22364
+  '1397':
+    projectUID: 1397
     projectName: ProphecySnowflakeSqlBasics
     repositoryPath: gitUri=https://github.com/prophecy-io/snowflake-sql-basics&subPath=
     version: 0.0.1
     isDefault: true
     author: null
-    createdAt: '2025-03-26 10:06:58'
+    createdAt: '2025-03-27 14:05:20'
+  '1396':
+    projectUID: 1396
+    projectName: ProphecyDatabricksSqlBasics
+    repositoryPath: gitUri=https://github.com/prophecy-io/databricks-sql-basics&subPath=
+    version: 0.0.1
+    isDefault: true
+    author: null
+    createdAt: '2025-03-27 14:05:20'
 flags:
   shouldAddDefaultDependenciesIfAbsent: true
 pipelineConfigurations: {}

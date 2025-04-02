@@ -38,6 +38,17 @@ sqlMacros:
     - macros/macros.yml
     - gems/DataCleansing.py
     createdAt: '2024-11-28 05:23:51'
+  .prophecy/metadata/sqlmacros/JSONParse:
+    name: JSONParse
+    macroType: query
+    description: null
+    author: shashank@prophecy.io
+    files:
+    - macros/JSONParse.sql
+    - .prophecy/ide/macros/JSONParse.json
+    - macros/macros.yml
+    - gems/JSONParse.py
+    createdAt: '2024-11-28 05:23:51'
   .prophecy/metadata/sqlmacros/DynamicSelect:
     name: DynamicSelect
     macroType: query

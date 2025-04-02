@@ -6,7 +6,7 @@
     select
         *,
         {%- for col in columnName %}
-            PARSE_XML({{ '"' ~ col ~ '"' }}) as {{ '"xml_parsed_' ~ col ~ '"' }}{% if not loop.last %},{% endif %}
+            PARSE_XML({{ '"' ~ col ~ '"' }}) as {{ '"' ~ col ~ '_parsed"' }}{% if not loop.last %},{% endif %}
         {%- endfor %}
     from {{ relation_name }}
 

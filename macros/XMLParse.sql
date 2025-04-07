@@ -1,13 +1,17 @@
-{% macro XMLParse(
-    relation_name,
-    columnName
-    ) %}
+{%- macro XMLParse(
+  relation_name,
+  columnName,
+  columnSuffix
+  )
+-%}
 
-    select
-        *,
-        {%- for col in columnName %}
-            PARSE_XML({{ '"' ~ col ~ '"' }}) as {{ '"' ~ col ~ '_parsed"' }}{% if not loop.last %},{% endif %}
-        {%- endfor %}
-    from {{ relation_name }}
+{%- set evaluation_result = SnowflakeSqlBasics.XmlToJson() -%}
 
-{% endmacro %}
+SELECT
+  *,
+  {%- for col in columnName %}
+    PARSE_JSON({{target.database}}.{{target.schema}}.xml_to_json({{col}})) AS {{ col }}_{{ columnSuffix }}{{ "," if not loop.last }}
+  {%- endfor %}
+FROM {{ relation_name }}
+
+{%- endmacro -%}

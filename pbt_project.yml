@@ -60,17 +60,6 @@ sqlMacros:
     - macros/macros.yml
     - gems/DynamicSelect.py
     createdAt: '2024-11-28 05:24:23'
-  .prophecy/metadata/sqlmacros/ColumnParser:
-    name: ColumnParser
-    macroType: query
-    description: null
-    author: abhisheks+e2etests@prophecy.io
-    files:
-    - macros/ColumnParser.sql
-    - .prophecy/ide/macros/ColumnParser.json
-    - macros/macros.yml
-    - gems/ColumnParser.py
-    createdAt: '2024-11-28 05:23:18'
   .prophecy/metadata/sqlmacros/BulkColumnExpressions:
     name: BulkColumnExpressions
     macroType: query

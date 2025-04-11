@@ -1,0 +1,216 @@
+{
+  "name" : "SnowflakeSqlBasics",
+  "fileSystem" : {
+    "type" : "Folder",
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "providerType" : "snowflake",
+  "prophecyIDEFolder" : {
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "datasets" : { },
+  "pipelines" : { },
+  "externalSources" : {
+    "type" : "Project",
+    "name" : "",
+    "children" : [ {
+      "type" : "Database",
+      "name" : "PROPHECY_EXP",
+      "children" : [ {
+        "type" : "Schema",
+        "name" : "INFORMATION_SCHEMA",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "PROPHECY_EXP_SCHEMA",
+        "tables" : {
+          "CUSTOMER" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "ID",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "NAME",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "PHONE",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "GOVT_ID",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "XML_TEST" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "ID",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "XML_VALUE",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          }
+        }
+      }, {
+        "type" : "Schema",
+        "name" : "PUBLIC",
+        "tables" : {
+          "DUMMY_JSON_DATA_NEW" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "ID",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "JSON_DATA",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "SALES_DATA" : {
+            "entityType" : "TABLE",
+            "providerType" : "Snowflake",
+            "fields" : [ {
+              "name" : "ID",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "COUNTRY",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "SALES",
+              "dataType" : {
+                "type" : "Number"
+              }
+            }, {
+              "name" : "COST",
+              "dataType" : {
+                "type" : "Number"
+              }
+            } ]
+          }
+        }
+      } ]
+    }, {
+      "type" : "Database",
+      "name" : "SNOWFLAKE",
+      "children" : [ {
+        "type" : "Schema",
+        "name" : "ACCOUNT_USAGE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "ALERT",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "BCR_ROLLOUT",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "CORE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "CORTEX",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "DATA_PRIVACY",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "DATA_SHARING_USAGE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "IMAGES",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "INFORMATION_SCHEMA",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "LOCAL",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "MARKETPLACE_NOTIFICATION",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "ML",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "MONITORING",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "NOTIFICATION",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "ORGANIZATION_USAGE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "READER_ACCOUNT_USAGE",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "SNOWPARK",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TELEMETRY",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "TRUST_CENTER",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "WORKLOAD_INSIGHTS",
+        "children" : [ ]
+      } ]
+    }, {
+      "type" : "Database",
+      "name" : "SNOWFLAKE_SAMPLE_DATA",
+      "children" : [ ]
+    } ]
+  },
+  "dependenciesContainer" : {
+    "dependencies" : { },
+    "prophecyProjectDependencies" : { }
+  },
+  "entitiesToSync" : [ ],
+  "frontEndLanguage" : "sql"
+}

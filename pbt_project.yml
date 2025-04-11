@@ -23,7 +23,23 @@ functions:
   airflowFunctions: {}
   businessRules: {}
 subgraphs: {}
-sqlModels: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/TransposeTest:
+    name: TransposeTest
+    schema: null
+    description: null
+    author: shashank@simpledatalabs.com
+    files:
+    - models/TransposeTest.sql
+    - .prophecy/ide/models/TransposeTest.json
+    - models/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-09 18:12:38'
 sqlSnapshots: {}
 sqlTests: {}
 sqlMacros:
@@ -49,6 +65,17 @@ sqlMacros:
     - macros/macros.yml
     - gems/DynamicSelect.py
     createdAt: '2024-11-28 05:24:23'
+  .prophecy/metadata/sqlmacros/JSONParse:
+    name: JSONParse
+    macroType: query
+    description: null
+    author: shashank@simpledatalabs.com
+    files:
+    - macros/JSONParse.sql
+    - .prophecy/ide/macros/JSONParse.json
+    - macros/macros.yml
+    - gems/JSONParse.py
+    createdAt: '2025-03-29 15:09:33'
   .prophecy/metadata/sqlmacros/ColumnParser:
     name: ColumnParser
     macroType: query
@@ -60,6 +87,17 @@ sqlMacros:
     - macros/macros.yml
     - gems/ColumnParser.py
     createdAt: '2024-11-28 05:23:18'
+  .prophecy/metadata/sqlmacros/XMLParse:
+    name: XMLParse
+    macroType: query
+    description: null
+    author: shashank@simpledatalabs.com
+    files:
+    - macros/XMLParse.sql
+    - .prophecy/ide/macros/XMLParse.json
+    - macros/macros.yml
+    - gems/XMLParse.py
+    createdAt: '2025-04-01 12:28:34'
   .prophecy/metadata/sqlmacros/BulkColumnExpressions:
     name: BulkColumnExpressions
     macroType: query
@@ -92,6 +130,17 @@ sqlMacros:
     - .prophecy/ide/macros/generate_schema_name.json
     - macros/macros.yml
     createdAt: '2025-03-28 05:05:21'
+  .prophecy/metadata/sqlmacros/Transpose:
+    name: Transpose
+    macroType: query
+    description: null
+    author: shashank@simpledatalabs.com
+    files:
+    - macros/Transpose.sql
+    - .prophecy/ide/macros/Transpose.json
+    - macros/macros.yml
+    - gems/Transpose.py
+    createdAt: '2025-04-08 18:50:03'
   .prophecy/metadata/sqlmacros/evaluate_expression:
     name: evaluate_expression
     macroType: expression
@@ -103,15 +152,119 @@ sqlMacros:
     - macros/macros.yml
     createdAt: '2024-11-28 05:21:11'
 sqlSeeds: {}
-sqlSources: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/PROPHECY_EXP_PROPHECY_EXP_SCHEMA:
+    name: PROPHECY_EXP.PROPHECY_EXP_SCHEMA
+    description: null
+    author: shashank@simpledatalabs.com
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-04-11 09:00:15'
+    tables:
+    - name: XML_TEST
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: ID
+          dataType:
+            type: String
+        - name: XML_VALUE
+          dataType:
+            type: String
+      description: XML data records for testing purposes, capturing structured information
+        in XML format.
+      author: shashank@simpledatalabs.com
+      tableType: table
+      createdAt: '2025-04-11 09:00:15'
+  .prophecy/metadata/sqlsources/PROPHECY_EXP_PUBLIC:
+    name: PROPHECY_EXP.PUBLIC
+    description: null
+    author: shashank@simpledatalabs.com
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-03-29 15:21:23'
+    tables:
+    - name: DUMMY_XML_DATA
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: ID
+          dataType:
+            type: Number
+        - name: XML_STR1
+          dataType:
+            type: String
+        - name: XML_STR2
+          dataType:
+            type: String
+      description: null
+      author: shashank@simpledatalabs.com
+      tableType: table
+      createdAt: '2025-04-01 16:21:34'
+    - name: SALES_DATA
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: ID
+          dataType:
+            type: Number
+        - name: COUNTRY
+          dataType:
+            type: String
+        - name: SALES
+          dataType:
+            type: Number
+        - name: COST
+          dataType:
+            type: Number
+      description: null
+      author: shashank@simpledatalabs.com
+      tableType: table
+      createdAt: '2025-04-09 18:11:43'
+    - name: DUMMY_JSON_DATA_NEW
+      schema:
+        entityType: ''
+        providerType: snowflake
+        fields:
+        - name: ID
+          dataType:
+            type: Number
+        - name: JSON_DATA
+          dataType:
+            type: String
+      description: null
+      author: shashank@simpledatalabs.com
+      tableType: table
+      createdAt: '2025-04-11 08:13:13'
 sqlUnreferencedSources: {}
+sqlOrchestratorPipelines: {}
+sqlBusinessApps: {}
 sqlPipeline:
   name: sqlPipeline
   description: null
   author: abhisheks+e2etests@prophecy.io
   createdAt: '2024-11-28 05:20:36'
 dependencies: []
-projectDependencies: {}
+projectDependencies:
+  '22363':
+    projectUID: 22363
+    projectName: ProphecyDatabricksSqlBasics
+    repositoryPath: gitUri=https://github.com/prophecy-io/databricks-sql-basics&subPath=
+    version: 0.0.1
+    isDefault: true
+    author: null
+    createdAt: '2025-03-28 12:22:51'
+  '22364':
+    projectUID: 22364
+    projectName: ProphecySnowflakeSqlBasics
+    repositoryPath: gitUri=https://github.com/prophecy-io/snowflake-sql-basics&subPath=
+    version: 0.0.1
+    isDefault: true
+    author: null
+    createdAt: '2025-03-28 12:22:51'
 flags:
   shouldAddDefaultDependenciesIfAbsent: true
 pipelineConfigurations: {}

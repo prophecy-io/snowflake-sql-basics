@@ -1,0 +1,64 @@
+---
+version: 2
+sources:
+- name: "PROPHECY_EXP.PUBLIC"
+  database: "PROPHECY_EXP"
+  schema: "PUBLIC"
+  tables:
+  - name: "DUMMY_XML_DATA"
+    columns:
+    - name: "ID"
+      dataType:
+        type: "Number"
+    - name: "XML_STR1"
+      dataType:
+        type: "String"
+    - name: "XML_STR2"
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "SALES_DATA"
+    columns:
+    - name: "ID"
+      dataType:
+        type: "Number"
+    - name: "COUNTRY"
+      dataType:
+        type: "String"
+    - name: "SALES"
+      dataType:
+        type: "Number"
+    - name: "COST"
+      dataType:
+        type: "Number"
+    type: "table"
+  - name: "DUMMY_JSON_DATA_NEW"
+    columns:
+    - name: "ID"
+      dataType:
+        type: "Number"
+    - name: "JSON_DATA"
+      dataType:
+        type: "String"
+    type: "table"
+- name: "PROPHECY_EXP.PROPHECY_EXP_SCHEMA"
+  database: "PROPHECY_EXP"
+  schema: "PROPHECY_EXP_SCHEMA"
+  config:
+    enabled: true
+  tables:
+  - name: "XML_TEST"
+    description: "XML data records for testing purposes, capturing structured information\
+      \ in XML format."
+    quoting:
+      identifier: true
+    columns:
+    - name: "ID"
+      description: "Unique identifier for each XML record"
+      dataType:
+        type: "String"
+    - name: "XML_VALUE"
+      description: "The content of the XML data stored as a string"
+      dataType:
+        type: "String"
+    type: "table"

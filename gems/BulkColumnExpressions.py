@@ -22,7 +22,7 @@ import json
 class BulkColumnExpressions(MacroSpec):
     name: str = "BulkColumnExpressions"
     projectName: str = "SnowflakeSqlBasics"
-    category: str = "Transform"
+    category: str = "Parse"
 
 
     @dataclass(frozen=True)

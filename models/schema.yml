@@ -1,0 +1,18 @@
+---
+version: 2
+models:
+- name: "TransposeTest"
+  columns:
+  - name: "ID"
+    dataType:
+      type: "Number"
+  - name: "COUNTRY"
+    dataType:
+      type: "String"
+  - name: "NAME"
+    dataType:
+      type: "String"
+  - name: "VALUE"
+    dataType:
+      type: "String"
+  tests: []

@@ -1,0 +1,462 @@
+{
+  "id" : "TransposeTest",
+  "metainfo" : {
+    "label" : "TransposeTest",
+    "autoLayout" : false,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "version" : 3,
+    "properties" : {
+      "name" : "TransposeTest",
+      "columns" : [ {
+        "name" : "ID",
+        "dataType" : {
+          "type" : "Number"
+        }
+      }, {
+        "name" : "COUNTRY",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "NAME",
+        "dataType" : {
+          "type" : "String"
+        }
+      }, {
+        "name" : "VALUE",
+        "dataType" : {
+          "type" : "String"
+        }
+      } ],
+      "tests" : [ ],
+      "providerType" : "snowflake"
+    }
+  },
+  "processes" : {
+    "AwyiE6VpaEejrF98Gra1H" : {
+      "id" : "AwyiE6VpaEejrF98Gra1H",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "DUMMY_JSON_DATA_NEW",
+        "slug" : "DUMMY_JSON_DATA_NEW",
+        "x" : -880,
+        "y" : 60,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "DUMMY_JSON_DATA_NEW",
+          "sourceType" : "Table",
+          "sourceName" : "PROPHECY_EXP.PUBLIC",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "4S6Mcf0aDNsYGm7lYwu-9",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "TransposeTest##VMSl7U6h" : {
+      "id" : "TransposeTest##VMSl7U6h",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "TransposeTest",
+        "x" : -80,
+        "y" : -260,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT * \n\nFROM sales_cost_transpose\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "yewcZ7g9",
+          "slug" : "sales_cost_transpose"
+        } ],
+        "outputs" : [ {
+          "id" : "makj4zAV",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "oN5As6ORMnvMYhOI_h2DP$$npdUiuevDMBJN7JYM4V7K" : {
+      "id" : "oN5As6ORMnvMYhOI_h2DP$$npdUiuevDMBJN7JYM4V7K",
+      "component" : "Transpose",
+      "metadata" : {
+        "label" : "Transpose_1",
+        "slug" : "Transpose_1",
+        "x" : -340,
+        "y" : -100,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "relation_name" : [ "" ],
+        "_oldMacroProperties" : {
+          "macroName" : "Transpose",
+          "projectName" : "SnowflakeSqlBasics",
+          "parameters" : [ {
+            "name" : "relation_name",
+            "value" : "['']"
+          }, {
+            "name" : "keyColumns",
+            "value" : "[]"
+          }, {
+            "name" : "dataColumns",
+            "value" : "[]"
+          } ]
+        },
+        "dataColumns" : [ ],
+        "schema" : {
+          "type" : "struct",
+          "fields" : [ {
+            "name" : "ID",
+            "type" : {
+              "type" : "struct",
+              "fields" : [ ]
+            },
+            "nullable" : true,
+            "metadata" : {
+              "description" : "",
+              "mappings" : [ ],
+              "tags" : [ ]
+            }
+          }, {
+            "name" : "COUNTRY",
+            "type" : {
+              "type" : "struct",
+              "fields" : [ ]
+            },
+            "nullable" : true,
+            "metadata" : {
+              "description" : "",
+              "mappings" : [ ],
+              "tags" : [ ]
+            }
+          }, {
+            "name" : "SALES",
+            "type" : {
+              "type" : "struct",
+              "fields" : [ ]
+            },
+            "nullable" : true,
+            "metadata" : {
+              "description" : "",
+              "mappings" : [ ],
+              "tags" : [ ]
+            }
+          }, {
+            "name" : "COST",
+            "type" : {
+              "type" : "struct",
+              "fields" : [ ]
+            },
+            "nullable" : true,
+            "metadata" : {
+              "description" : "",
+              "mappings" : [ ],
+              "tags" : [ ]
+            }
+          } ]
+        },
+        "keyColumns" : [ ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Oi-5q5E6WgEyCCrjOOyny$$mVRTKPDJpCr69wKeDj7YJ",
+          "slug" : "in1"
+        } ],
+        "outputs" : [ {
+          "id" : "qFQpe7CwPyc3rmxXmM760$$U_saEKLcL9cDQ4_TBs5H-",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "Transpose_SnowflakeSqlBasics",
+        "name" : "Transpose",
+        "projectName" : "SnowflakeSqlBasics",
+        "sourceProjectName" : "SnowflakeSqlBasics"
+      }
+    },
+    "HWydjQs0FJ7mcfQDBHgSZ$$uh1g3e2xGPRrh2SBHckWc" : {
+      "id" : "HWydjQs0FJ7mcfQDBHgSZ$$uh1g3e2xGPRrh2SBHckWc",
+      "component" : "Transpose",
+      "metadata" : {
+        "label" : "sales_cost_transpose",
+        "slug" : "sales_cost_transpose",
+        "x" : -340,
+        "y" : -280,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "relation_name" : [ "" ],
+        "_oldMacroProperties" : {
+          "macroName" : "Transpose",
+          "projectName" : "SnowflakeSqlBasics",
+          "parameters" : [ {
+            "name" : "relation_name",
+            "value" : "['']"
+          }, {
+            "name" : "keyColumns",
+            "value" : "[\"ID\", \"COUNTRY\"]"
+          }, {
+            "name" : "dataColumns",
+            "value" : "[\"SALES\", \"COST\"]"
+          } ]
+        },
+        "dataColumns" : [ "SALES", "COST" ],
+        "schema" : {
+          "type" : "struct",
+          "fields" : [ {
+            "name" : "ID",
+            "type" : {
+              "type" : "struct",
+              "fields" : [ ]
+            },
+            "nullable" : true,
+            "metadata" : {
+              "description" : "",
+              "mappings" : [ ],
+              "tags" : [ ]
+            }
+          }, {
+            "name" : "COUNTRY",
+            "type" : {
+              "type" : "struct",
+              "fields" : [ ]
+            },
+            "nullable" : true,
+            "metadata" : {
+              "description" : "",
+              "mappings" : [ ],
+              "tags" : [ ]
+            }
+          }, {
+            "name" : "SALES",
+            "type" : {
+              "type" : "struct",
+              "fields" : [ ]
+            },
+            "nullable" : true,
+            "metadata" : {
+              "description" : "",
+              "mappings" : [ ],
+              "tags" : [ ]
+            }
+          }, {
+            "name" : "COST",
+            "type" : {
+              "type" : "struct",
+              "fields" : [ ]
+            },
+            "nullable" : true,
+            "metadata" : {
+              "description" : "",
+              "mappings" : [ ],
+              "tags" : [ ]
+            }
+          } ]
+        },
+        "keyColumns" : [ "ID", "COUNTRY" ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "tjpeu0AwTICXXxcwDz8qm$$EU4FpZXr32rooGFlDebjM",
+          "slug" : "in1"
+        } ],
+        "outputs" : [ {
+          "id" : "bMo1-GaU-CJ5C8tuBfvQs$$DXyWIa9SdZiU0Trs5T-uF",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "Transpose_SnowflakeSqlBasics",
+        "name" : "Transpose",
+        "projectName" : "SnowflakeSqlBasics",
+        "sourceProjectName" : "SnowflakeSqlBasics"
+      }
+    },
+    "b4WujtSWpx1zXfvcnVofK" : {
+      "id" : "b4WujtSWpx1zXfvcnVofK",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "XML_TEST",
+        "slug" : "XML_TEST",
+        "x" : -1000,
+        "y" : -540,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "XML_TEST",
+          "sourceType" : "Source",
+          "sourceName" : "PROPHECY_EXP.PROPHECY_EXP_SCHEMA",
+          "alias" : "",
+          "additionalProperties" : null
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "wVRYoUKYshRP4A_FaPJCV",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "ygDfQE8l6sn3BjkaLpVDc$$zfbDysnJYnou_mgtb0Flc" : {
+      "id" : "ygDfQE8l6sn3BjkaLpVDc$$zfbDysnJYnou_mgtb0Flc",
+      "component" : "JSONParse",
+      "metadata" : {
+        "label" : "json_data_parsing",
+        "slug" : "json_data_parsing",
+        "x" : -660,
+        "y" : 60,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "columnNames" : [ "JSON_DATA" ],
+        "relation_name" : [ "DUMMY_JSON_DATA_NEW" ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "4iejij7jBOs4dNHhpUTk1$$PVJjcm4e_wZsjzPCUWZT8",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "g6plzp9l55O9ZN74_p-xm$$F9JUF7rgVw1RLIXrgLvjR",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "JSONParse_SnowflakeSqlBasics",
+        "name" : "JSONParse",
+        "projectName" : "SnowflakeSqlBasics",
+        "sourceProjectName" : "SnowflakeSqlBasics"
+      }
+    },
+    "WvPpm32sOU2mV21N-GULX$$ZwPKrXQdQXvrdqPp1hPHg" : {
+      "id" : "WvPpm32sOU2mV21N-GULX$$ZwPKrXQdQXvrdqPp1hPHg",
+      "component" : "XMLParse",
+      "metadata" : {
+        "label" : "xml_parsing",
+        "slug" : "xml_parsing",
+        "x" : -760,
+        "y" : -640,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "columnNames" : [ "XML_VALUE" ],
+        "relation_name" : [ "XML_TEST" ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "oXINrblvCTSRGPmvxD-m_$$hvGxsEqOh3duu2nco_64T",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "KYuvH5K4WN-ymz_34aqx5$$NQ8d4M6i27r9ULD7IxOJj",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "XMLParse_SnowflakeSqlBasics",
+        "name" : "XMLParse",
+        "projectName" : "SnowflakeSqlBasics",
+        "sourceProjectName" : "SnowflakeSqlBasics"
+      }
+    },
+    "AffGHw1Ae6jzM5TyXuTgE" : {
+      "id" : "AffGHw1Ae6jzM5TyXuTgE",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "SALES_DATA1",
+        "slug" : "SALES_DATA1",
+        "x" : -600,
+        "y" : -260,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "SALES_DATA",
+          "sourceType" : "Table",
+          "sourceName" : "PROPHECY_EXP.PUBLIC",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "nLuJruoX9wM38bgScD3zO",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "-KQA78XQZ_HbhL2Vuk2yf$$lyHnbuaqKxmF-58ydtVtq",
+    "source" : "AwyiE6VpaEejrF98Gra1H",
+    "sourcePort" : "4S6Mcf0aDNsYGm7lYwu-9",
+    "target" : "ygDfQE8l6sn3BjkaLpVDc$$zfbDysnJYnou_mgtb0Flc",
+    "targetPort" : "4iejij7jBOs4dNHhpUTk1$$PVJjcm4e_wZsjzPCUWZT8"
+  }, {
+    "id" : "ryw5H-4xIVRgC1QF89tVL",
+    "source" : "b4WujtSWpx1zXfvcnVofK",
+    "sourcePort" : "wVRYoUKYshRP4A_FaPJCV",
+    "target" : "WvPpm32sOU2mV21N-GULX$$ZwPKrXQdQXvrdqPp1hPHg",
+    "targetPort" : "oXINrblvCTSRGPmvxD-m_$$hvGxsEqOh3duu2nco_64T"
+  }, {
+    "id" : "0Si77pSQD4rDeIzySIKpM",
+    "source" : "AffGHw1Ae6jzM5TyXuTgE",
+    "sourcePort" : "nLuJruoX9wM38bgScD3zO",
+    "target" : "HWydjQs0FJ7mcfQDBHgSZ$$uh1g3e2xGPRrh2SBHckWc",
+    "targetPort" : "tjpeu0AwTICXXxcwDz8qm$$EU4FpZXr32rooGFlDebjM"
+  }, {
+    "id" : "nc-5i4epdNomGtq-s8y4M",
+    "source" : "HWydjQs0FJ7mcfQDBHgSZ$$uh1g3e2xGPRrh2SBHckWc",
+    "sourcePort" : "bMo1-GaU-CJ5C8tuBfvQs$$DXyWIa9SdZiU0Trs5T-uF",
+    "target" : "TransposeTest##VMSl7U6h",
+    "targetPort" : "yewcZ7g9"
+  }, {
+    "id" : "bB3A9tEokVaDd6sHT3r9X",
+    "source" : "AffGHw1Ae6jzM5TyXuTgE",
+    "sourcePort" : "nLuJruoX9wM38bgScD3zO",
+    "target" : "oN5As6ORMnvMYhOI_h2DP$$npdUiuevDMBJN7JYM4V7K",
+    "targetPort" : "Oi-5q5E6WgEyCCrjOOyny$$mVRTKPDJpCr69wKeDj7YJ"
+  } ],
+  "component" : "Model"
+}

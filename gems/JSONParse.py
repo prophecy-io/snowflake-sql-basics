@@ -42,7 +42,7 @@ class JSONParse(MacroSpec):
         return Dialog("Macro").addElement(
             ColumnsLayout(gap="1rem", height="100%")
             .addColumn(
-                Ports(allowInputAddOrDelete=True),
+                Ports(allowInputAddOrDelete=True, minInputPorts=1),
                 "content"
             )
             .addColumn(
@@ -52,7 +52,7 @@ class JSONParse(MacroSpec):
                         .addElement(
                                 StackLayout()
                                             .addElement(
-                                                SchemaColumnsDropdown("Source Column Name(s)")
+                                                SchemaColumnsDropdown("Select columns to parse")
                                                 .withSearchEnabled()
                                                 .withMultipleSelection()
                                                 .bindSchema("component.ports.inputs[0].schema")
@@ -100,7 +100,7 @@ class JSONParse(MacroSpec):
             macroName=self.name,
             projectName=self.projectName,
             parameters=[
-                MacroParameter("relation_name", properties.relation_name),
+                MacroParameter("relation_name", str(properties.relation_name)),
                 MacroParameter("columnNames", json.dumps(properties.columnNames))
             ],
         )

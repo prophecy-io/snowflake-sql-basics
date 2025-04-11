@@ -48,7 +48,18 @@ sqlMacros:
     - .prophecy/ide/macros/JSONParse.json
     - macros/macros.yml
     - gems/JSONParse.py
-    createdAt: '2024-11-28 05:23:51'
+    createdAt: '2025-04-08 05:23:51'
+  .prophecy/metadata/sqlmacros/Transpose:
+    name: Transpose
+    macroType: query
+    description: null
+    author: shashank@prophecy.io
+    files:
+    - macros/Transpose.sql
+    - .prophecy/ide/macros/Transpose.json
+    - macros/macros.yml
+    - gems/Transpose.py
+    createdAt: '2025-04-11 05:23:51'
   .prophecy/metadata/sqlmacros/DynamicSelect:
     name: DynamicSelect
     macroType: query

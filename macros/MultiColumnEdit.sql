@@ -1,8 +1,8 @@
 {%- macro MultiColumnEdit(
     relation,
-    allColumnNames,
-    columnNames,
     expressionToBeApplied,
+    allColumnNames=[],
+    columnNames=[],
     changeOutputFieldName=false,
     prefixSuffixOption = 'prefix / suffix',
     prefixSuffixToBeAdded=''

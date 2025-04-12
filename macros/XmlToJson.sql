@@ -232,4 +232,3 @@ $$
 {{ result }}
 
 {% endmacro %}
-

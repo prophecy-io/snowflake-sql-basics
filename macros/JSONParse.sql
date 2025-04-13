@@ -1,7 +1,7 @@
-{% macro JSONParse(
+{%- macro JSONParse(
     relation_name,
     columnName
-    ) %}
+    ) -%}
 
     select
         *,
@@ -10,4 +10,4 @@
         {%- endfor %}
     from {{ relation_name }}
     
-{% endmacro %}
+{%- endmacro -%}

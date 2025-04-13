@@ -6,12 +6,12 @@ from collections import defaultdict
 from prophecy.cb.sql.Component import *
 from prophecy.cb.sql.MacroBuilderBase import *
 from prophecy.cb.ui.uispec import *
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
 
 class JSONParse(MacroSpec):
     name: str = "JSONParse"
     projectName: str = "SnowflakeSqlBasics"
     category: str = "Parse"
+    minNumOfInputPorts: int = 1
 
     @dataclass(frozen=True)
     class JSONParseProperties(MacroProperties):
@@ -42,7 +42,7 @@ class JSONParse(MacroSpec):
         return Dialog("Macro").addElement(
             ColumnsLayout(gap="1rem", height="100%")
             .addColumn(
-                Ports(allowInputAddOrDelete=True),
+                Ports(),
                 "content"
             )
             .addColumn(
@@ -52,7 +52,7 @@ class JSONParse(MacroSpec):
                         .addElement(
                                 StackLayout()
                                             .addElement(
-                                                SchemaColumnsDropdown("Source Column Name(s)")
+                                                SchemaColumnsDropdown("Select columns to parse")
                                                 .withSearchEnabled()
                                                 .withMultipleSelection()
                                                 .bindSchema("component.ports.inputs[0].schema")
@@ -100,7 +100,7 @@ class JSONParse(MacroSpec):
             macroName=self.name,
             projectName=self.projectName,
             parameters=[
-                MacroParameter("relation_name", properties.relation_name),
+                MacroParameter("relation_name", str(properties.relation_name)),
                 MacroParameter("columnNames", json.dumps(properties.columnNames))
             ],
         )

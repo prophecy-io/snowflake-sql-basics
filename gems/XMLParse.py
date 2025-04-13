@@ -70,17 +70,29 @@ class XMLParse(MacroSpec):
                             )
                         )
                         .addElement(
-                            SchemaColumnsDropdown("Select Column to Split")
-                            .withSearchEnabled()
-                            .withMultipleSelection()
-                            .bindSchema("component.ports.inputs[0].schema")
-                            .bindProperty("columnNames")
-                            .showErrorsFor("columnNames")
-                        )
-                        .addElement(
-                            TextBox("Parsed Column Suffix")
-                            .bindPlaceholder("Enter Parsed Column Suffix")
-                            .bindProperty("columnSuffix")
+                            StepContainer()
+                                .addElement(
+                                    Step()
+                                        .addElement(
+                                            StackLayout(height="100%")
+                                                .addElement(
+                                                    SchemaColumnsDropdown("Select Column to Split")
+                                                    .withSearchEnabled()
+                                                    .withMultipleSelection()
+                                                    .bindSchema("component.ports.inputs[0].schema")
+                                                    .bindProperty("columnNames")
+                                                    .showErrorsFor("columnNames")
+                                                )
+                                                .addElement(
+                                                    ColumnsLayout(gap="1rem", height="100%")
+                                                    .addColumn(
+                                                        TextBox("Parsed Column Suffix")
+                                                        .bindPlaceholder("Enter Parsed Column Suffix")
+                                                        .bindProperty("columnSuffix"),"20%"
+                                                    )
+                                                )
+                                        )
+                                )
                         )
                     )
                 )

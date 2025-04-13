@@ -51,16 +51,26 @@ class JSONParse(MacroSpec):
                         StackLayout(height="100%")
                         .addElement(
                                 StackLayout()
+                                    .addElement(
+                                        StepContainer()
+                                        .addElement(
+                                            Step()
                                             .addElement(
-                                                SchemaColumnsDropdown("Select columns to parse")
-                                                .withSearchEnabled()
-                                                .withMultipleSelection()
-                                                .bindSchema("component.ports.inputs[0].schema")
-                                                .bindProperty("columnNames")
-                                                .showErrorsFor("columnNames")
+                                                StackLayout(height="100%")
+                                                .addElement(
+                                                    SchemaColumnsDropdown("Select columns to parse",
+                                                                          appearance="minimal")
+                                                    .withSearchEnabled()
+                                                    .withMultipleSelection()
+                                                    .bindSchema("component.ports.inputs[0].schema")
+                                                    .bindProperty("columnNames")
+                                                    .showErrorsFor("columnNames")
+                                                )
                                             )
-                                )                   
-                )
+                                        )
+                                    )
+                        )
+                    )
             )
         )
 

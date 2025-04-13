@@ -76,7 +76,7 @@ class XMLParse(MacroSpec):
                                         .addElement(
                                             StackLayout(height="100%")
                                                 .addElement(
-                                                    SchemaColumnsDropdown("Select Column to Split")
+                                                    SchemaColumnsDropdown("Select Column to Split", appearance = "minimal")
                                                     .withSearchEnabled()
                                                     .withMultipleSelection()
                                                     .bindSchema("component.ports.inputs[0].schema")

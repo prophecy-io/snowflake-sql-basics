@@ -31,10 +31,10 @@ class JSONParse(MacroSpec):
         
         relation_name = []
         for upstream_node in all_upstream_nodes:
-            if upstream_node is None or upstream_node.slug is None:
+            if upstream_node is None or upstream_node.label is None:
                 relation_name.append("")
             else:
-                relation_name.append(upstream_node.slug)
+                relation_name.append(upstream_node.label)
         
         return relation_name
 
@@ -51,16 +51,26 @@ class JSONParse(MacroSpec):
                         StackLayout(height="100%")
                         .addElement(
                                 StackLayout()
+                                    .addElement(
+                                        StepContainer()
+                                        .addElement(
+                                            Step()
                                             .addElement(
-                                                SchemaColumnsDropdown("Select columns to parse")
-                                                .withSearchEnabled()
-                                                .withMultipleSelection()
-                                                .bindSchema("component.ports.inputs[0].schema")
-                                                .bindProperty("columnNames")
-                                                .showErrorsFor("columnNames")
+                                                StackLayout(height="100%")
+                                                .addElement(
+                                                    SchemaColumnsDropdown("Select columns to parse",
+                                                                          appearance="minimal")
+                                                    .withSearchEnabled()
+                                                    .withMultipleSelection()
+                                                    .bindSchema("component.ports.inputs[0].schema")
+                                                    .bindProperty("columnNames")
+                                                    .showErrorsFor("columnNames")
+                                                )
                                             )
-                                )                   
-                )
+                                        )
+                                    )
+                        )
+                    )
             )
         )
 

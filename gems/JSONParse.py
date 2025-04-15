@@ -46,29 +46,33 @@ class JSONParse(MacroSpec):
                 "content"
             )
             .addColumn(
-                StackLayout()
+                StackLayout(height="100%")
                     .addElement(
-                        StackLayout(height="100%")
+                        StepContainer()
                         .addElement(
-                                StackLayout()
-                                    .addElement(
-                                        StepContainer()
-                                        .addElement(
-                                            Step()
-                                            .addElement(
-                                                StackLayout(height="100%")
-                                                .addElement(
-                                                    SchemaColumnsDropdown("Select columns to parse",
-                                                                          appearance="minimal")
-                                                    .withSearchEnabled()
-                                                    .withMultipleSelection()
-                                                    .bindSchema("component.ports.inputs[0].schema")
-                                                    .bindProperty("columnNames")
-                                                    .showErrorsFor("columnNames")
-                                                )
-                                            )
-                                        )
-                                    )
+                            Step()
+                            .addElement(
+                                StackLayout(height="100%")
+                                .addElement(
+                                    SchemaColumnsDropdown("Select columns to parse",
+                                                            appearance="minimal")
+                                    .withSearchEnabled()
+                                    .withMultipleSelection()
+                                    .bindSchema("component.ports.inputs[0].schema")
+                                    .bindProperty("columnNames")
+                                    .showErrorsFor("columnNames")
+                                )
+                            )
+                        )
+                    )
+                    .addElement(
+                        AlertBox(
+                            variant="success",
+                            _children=[
+                                Markdown(
+                                    "For each column processed using **`JSONParse`**, a new column is created with the suffix **`_parsed`**\n"
+                                )
+                            ]
                         )
                     )
             )

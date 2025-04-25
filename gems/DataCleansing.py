@@ -163,7 +163,7 @@ class DataCleansing(MacroSpec):
                                     BooleanExpr(True),
                                 )
                                 .then(
-                                    NumberBox("Value to replace Numeric field", placeholder="0")
+                                    NumberBox("Value to replace Numeric field", placeholder="0").withMin(-9999999999999999)
                                     .bindProperty("replaceNullNumericWith"),
                                 )
                             )
@@ -182,6 +182,15 @@ class DataCleansing(MacroSpec):
             diagnostics.append(
                 Diagnostic("component.properties.removeRowNullAllCols",
                            "Remove nulls from all columns or Select columns to clean", SeverityLevelEnum.Error))
+
+        if len(component.properties.columnNames) > 0 :
+            missingKeyColumns = [col for col in component.properties.columnNames if
+                                 col not in component.properties.schema]
+            if missingKeyColumns:
+                diagnostics.append(
+                    Diagnostic("component.properties.columnNames", f"Selected columns {missingKeyColumns} are not present in input schema.", SeverityLevelEnum.Error)
+                )
+
         return diagnostics
 
     def onChange(self, context: SqlContext, oldState: Component, newState: Component) -> Component:

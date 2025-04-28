@@ -7,7 +7,7 @@ import datetime as dt
 
 class DataCleansing(MacroSpec):
     name: str = "DataCleansing"
-    projectName: str = "DatabricksSqlBasics"
+    projectName: str = "SnowflakeSqlBasics"
     category: str = "Prepare"
     minNumOfInputPorts: int = 1
 

@@ -1,6 +1,6 @@
 name: SnowflakeSqlBasics
 description: ''
-version: 0.0.4.dev0
+version: 0.0.4.dev1
 author: abhisheks+e2etests@prophecy.io
 language: sql
 buildSystem: ''

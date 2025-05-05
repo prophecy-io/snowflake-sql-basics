@@ -101,10 +101,28 @@ class XMLParse(MacroSpec):
 
     def validate(self, context: SqlContext, component: Component) -> List[Diagnostic]:
         diagnostics = super(XMLParse, self).validate(context, component)
+
+        if len(component.properties.columnNames) == 0:
+            diagnostics.append(
+                Diagnostic("component.properties.columnNames", "Please select a column for the operation",
+                           SeverityLevelEnum.Error))
+
         if len(component.properties.columnSuffix) == 0:
             diagnostics.append(
                 Diagnostic("properties.columnSuffix", "Please provide a suffix for generated column",
                            SeverityLevelEnum.Error))
+
+        # Extract all column names from the schema
+        field_names = [field["name"] for field in component.ports.inputs[0].schema["fields"]]
+
+        if len(component.properties.columnNames) > 0 :
+            missingKeyColumns = [col for col in component.properties.columnNames if
+                                 col not in field_names]
+            if missingKeyColumns:
+                diagnostics.append(
+                    Diagnostic("component.properties.columnNames", f"Selected columns {missingKeyColumns} are not present in input schema.", SeverityLevelEnum.Error)
+                )
+
         return diagnostics
 
     def onChange(self, context: SqlContext, oldState: Component, newState: Component) -> Component:
